@@ -4,16 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FTCL — Future Puck Cline League</title>
-  <!-- Иконка вкладки браузера (синхронизируется с аватаркой сайта) -->
   <link id="site-favicon" rel="icon" type="image/png" href="logo.jpg">
-  <!-- Подключение шрифтов Inter и Russo One -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
   <style>
-    /* ==========================================================================
-       1. ПЕРЕМЕННЫЕ, ПЛАВНЫЕ АНИМАЦИИ И БАЗОВЫЙ СТИЛЬ
-       ========================================================================== */
     :root {
       --red: #e50914;
       --red-soft: rgba(229, 9, 20, 0.14);
@@ -29,7 +24,6 @@
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Кастомный аккуратный скроллбар */
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #090b10; }
     ::-webkit-scrollbar-thumb { background: #232938; border-radius: 4px; }
@@ -48,7 +42,6 @@
       overflow-x: hidden;
     }
 
-    /* Ключевые кадры плавного появления элементов */
     @keyframes softFade {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -58,9 +51,6 @@
       50% { transform: translateY(-8px); box-shadow: 0 18px 50px rgba(229, 9, 20, 0.52); }
     }
 
-    /* ==========================================================================
-       2. ВЕРХНЯЯ ШАПКА И МОБИЛЬНЫЙ HUD (4 ВКЛАДКИ БЕЗ КНОПКИ АДМИН)
-       ========================================================================== */
     header {
       position: sticky; top: 0; z-index: 1000;
       background: rgba(9, 11, 16, 0.82);
@@ -86,7 +76,6 @@
     .hud-top-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
     .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
 
-    /* Мобильный HUD в виде парящей капсулы */
     .mobile-hud {
       display: none; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 28px); max-width: 380px; z-index: 1500;
@@ -103,9 +92,6 @@
     .hud-item.active { color: #fff; background: rgba(229, 9, 20, 0.22); box-shadow: inset 0 0 0 1px rgba(229, 9, 20, 0.45); }
     .hud-item.active svg { color: var(--red); transform: translateY(-1px); }
 
-    /* ==========================================================================
-       3. ГЛАВНЫЙ ЭКРАН (HERO) И ОБЩИЕ СЕКЦИИ
-       ========================================================================== */
     .hero { max-width: 1200px; margin: 0 auto; padding: 52px 24px 34px; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 36px; animation: softFade 0.6s var(--smooth) both; }
     .hero-badge { display: inline-block; background: var(--red-soft); border: 1px solid rgba(229, 9, 20, 0.45); color: #ff646c; font-weight: 800; font-size: 11px; padding: 6px 13px; border-radius: 8px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
     .hero h1 { font-family: 'Russo One', sans-serif; font-size: 52px; font-style: italic; line-height: 1.04; text-transform: uppercase; margin-bottom: 10px; }
@@ -127,9 +113,6 @@
     .section-header h2 { font-family: 'Russo One', sans-serif; font-size: 24px; font-style: italic; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-subhint { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
-    /* ==========================================================================
-       4. СВОРАЧИВАЕМЫЙ КАЛЕНДАРЬ ИГР И КАРТОЧКИ МАТЧЕЙ
-       ========================================================================== */
     .calendar-toggle-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px; background: var(--red-soft); border: 1px solid rgba(229, 9, 20, 0.45); color: #fff; border-radius: 10px; font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.3s var(--smooth); }
     .calendar-toggle-btn:hover { background: var(--red); transform: translateY(-1px); }
     .calendar-collapsible-wrap { transition: opacity 0.35s var(--smooth); }
@@ -159,9 +142,6 @@
     .match-mini-logo { width: 26px; height: 26px; object-fit: contain; flex-shrink: 0; }
     .match-score { font-family: 'Russo One', sans-serif; font-size: 16px; background: rgba(9, 11, 16, 0.85); padding: 5px 11px; border-radius: 8px; border: 1px solid var(--border); text-align: center; min-width: 54px; }
 
-    /* ==========================================================================
-       5. ТАБЛИЦА 10 КОМАНД, ЛИДЕРЫ И РЕГЛАМЕНТ 2026
-       ========================================================================== */
     .preseason-bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: var(--red-soft); border: 1px solid rgba(229, 9, 20, 0.32); border-radius: 10px; padding: 10px 15px; margin-bottom: 12px; font-size: 12px; }
     .table-wrap { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 12px; overflow-x: auto; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3); }
     table { width: 100%; border-collapse: collapse; text-align: left; }
@@ -204,11 +184,39 @@
     .rule-subblock h4 { font-family: 'Russo One', sans-serif; font-size: 13px; margin-bottom: 5px; text-transform: uppercase; }
     .rule-subblock ul { padding-left: 16px; font-size: 13px; color: #dce3ec; display: flex; flex-direction: column; gap: 4px; }
 
-    /* ==========================================================================
-       6. ФУТЕР С ПОДПИСЬЮ CREATED BY ZELOTES И ПЛАВНЫЕ МОДАЛЬНЫЕ ОКНА
-       ========================================================================== */
     footer { margin-top: 40px; border-top: 1px solid var(--border); padding: 28px 16px 100px; text-align: center; color: var(--text-muted); font-size: 12.5px; }
-    .sponsors { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 12px; font-family: 'Russo One', sans-serif; color: #4a5363; letter-spacing: 1.5px; }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ice-white);
+      text-decoration: none;
+      transition: all 0.35s var(--smooth);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .social-btn svg { width: 22px; height: 22px; fill: currentColor; transition: transform 0.3s var(--smooth); }
+    .social-btn:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+      transform: translateY(-4px) scale(1.08);
+      box-shadow: 0 8px 20px var(--red-glow);
+    }
+    .social-btn:hover svg { transform: scale(1.05); }
+
     #secret-admin-trigger { cursor: pointer; user-select: none; margin-bottom: 14px; }
     .creator-credit {
       display: inline-flex; align-items: center; gap: 6px;
@@ -229,7 +237,7 @@
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-card {
       background: #11141c; border: 1px solid var(--border); border-top: 4px solid var(--red);
-      border-radius: 14px; width: 100%; max-width: 960px; max-height: 92vh; overflow-y: auto;
+      border-radius: 14px; width: 100%; max-width: 980px; max-height: 92vh; overflow-y: auto;
       padding: 20px; position: relative; transform: scale(0.96) translateY(10px);
       transition: transform 0.35s var(--smooth); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
     }
@@ -243,7 +251,18 @@
     .admin-pane { display: none; animation: softFade 0.25s var(--smooth); }
     .admin-pane.active { display: block; }
     .admin-box { background: #0c0e13; border: 1px solid rgba(229, 9, 20, 0.35); border-radius: 10px; padding: 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-    .admin-row { display: grid; grid-template-columns: 36px 1.3fr auto repeat(6, 44px) auto; gap: 5px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
+
+    .admin-team-row {
+      display: grid;
+      grid-template-columns: 34px 1.4fr auto repeat(5, 42px) 48px 48px 46px auto;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: 6px;
+      background: #0c0e13;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
     .admin-match-row { display: grid; grid-template-columns: 95px 100px 105px 1fr 75px 1fr auto; gap: 5px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
     .admin-player-row { display: grid; grid-template-columns: 60px 1.4fr 130px repeat(4, 52px) auto; gap: 5px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
     .admin-leader-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 80px auto; gap: 6px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
@@ -253,7 +272,7 @@
 
     @media (max-width: 860px) {
       .rules-layout { grid-template-columns: 1fr; }
-      .admin-match-row, .admin-player-row, .admin-leader-row { grid-template-columns: 1fr 1fr; }
+      .admin-match-row, .admin-player-row, .admin-leader-row, .admin-team-row { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       nav.desktop-nav { display: none; }
@@ -267,13 +286,11 @@
       .section { padding: 22px 14px; }
       .section-header h2 { font-size: 18px; }
       .calendar-toggle-btn { width: 100%; justify-content: center; }
-      .admin-row { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ВЕРХНЯЯ ШАПКА -->
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
@@ -285,7 +302,7 @@
       </a>
       <nav class="desktop-nav">
         <a href="#matches">Календарь игр</a>
-        <a href="#standings">Таблица</a>
+        <a href="#standings">Турнирная таблица</a>
         <a href="#leaders">Лидеры</a>
         <a href="#rules">Регламент</a>
       </nav>
@@ -296,7 +313,6 @@
     </div>
   </header>
 
-  <!-- МОБИЛЬНЫЙ HUD (4 ВКЛАДКИ) -->
   <nav class="mobile-hud" aria-label="Навигация">
     <a href="#matches" class="hud-item active" data-target="matches">
       <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
@@ -316,7 +332,6 @@
     </a>
   </nav>
 
-  <!-- ГЛАВНЫЙ ЭКРАН -->
   <section class="hero">
     <div>
       <span class="hero-badge">Предсезонный турнир • 19 – 23 октября (МСК)</span>
@@ -325,7 +340,7 @@
       <p>Десять клубов вступают в борьбу! Предсезонный турнир FTCL проходит с 19 по 23 октября по московскому времени. Следи за календарем игр, составами команд и регламентом Сезона 2026.</p>
       <div class="btn-group">
         <a href="#matches" class="btn btn-primary">Календарь игр</a>
-        <a href="#standings" class="btn btn-outline">Таблица и составы</a>
+        <a href="#standings" class="btn btn-outline">Турнирная таблица</a>
         <a href="#rules" class="btn btn-outline">Регламент 2026</a>
       </div>
     </div>
@@ -334,7 +349,6 @@
     </div>
   </section>
 
-  <!-- КАЛЕНДАРЬ ИГР (СВОРАЧИВАЕМЫЙ НА ПК И ТЕЛЕФОНЕ) -->
   <section id="matches" class="section">
     <div class="section-header">
       <div>
@@ -364,15 +378,14 @@
     </div>
   </section>
 
-  <!-- ТУРНИРНАЯ ТАБЛИЦА И СОСТАВЫ КЛУБОВ -->
   <section id="standings" class="section">
     <div class="section-header">
-      <h2>Команды, зарегистрированные на сезон</h2>
+      <h2>Турнирная таблица</h2>
       <span class="section-subhint">Нажми на любую команду, чтобы открыть её состав и статистику игроков</span>
     </div>
     <div class="preseason-bar">
       <div><strong>Предсезонка:</strong> 19 – 23 октября (МСК) • Формат 3+1</div>
-      <div>Начисление очков (п. 2.2): <strong>В / ВО / ВБ = 2 | ПО / ПБ = 1 | П = 0</strong></div>
+      <div>При равенстве очков: <strong>1. Разница шайб (ЗШ - ПШ) | 2. Больше забитых шайб</strong></div>
     </div>
     <div class="table-wrap">
       <table>
@@ -394,7 +407,6 @@
     </div>
   </section>
 
-  <!-- ЛИДЕРЫ ТУРНИРА -->
   <section id="leaders" class="section">
     <div class="section-header">
       <h2>Лидеры турнира</h2>
@@ -403,7 +415,6 @@
     <div id="leaders-container" class="stats-grid"></div>
   </section>
 
-  <!-- РЕГЛАМЕНТ СЕЗОНА 2026 -->
   <section id="rules" class="section">
     <div class="section-header">
       <h2>Регламент сезона 2026 — FTCL</h2>
@@ -425,16 +436,22 @@
     </div>
   </section>
 
-  <!-- ФУТЕР С ПОДПИСЬЮ CREATED BY ZELOTES В САМОМ КОНЦЕ -->
   <footer>
-    <div class="sponsors">
-      <span>FTCL</span><span>FONBET</span><span>S7 AIRLINES</span><span>РОСТЕЛЕКОМ</span><span>СБП</span>
+    <div class="social-links">
+      <a href="https://t.me/FTCLpuck" target="_blank" rel="noopener noreferrer" class="social-btn" title="Telegram">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      </a>
+      <a href="https://twitch.tv/ftclstream" target="_blank" rel="noopener noreferrer" class="social-btn" title="Twitch">
+        <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@ftck20?_r=1&_t=ZS-9Aa2oR18zHJ" target="_blank" rel="noopener noreferrer" class="social-btn" title="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.38a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.66a6.34 6.34 0 0 0 10.82 4.48 6.29 6.29 0 0 0 1.86-4.47V8.71a8.18 8.18 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.14z"/></svg>
+      </a>
     </div>
-    <p id="secret-admin-trigger">© 2026 FTCL — Future Puck Cline League. Честная игра начинается с единых правил.</p>
+    <p id="secret-admin-trigger">© 2026 FTCL — Future Puck Cline League. Честная игра начинается с единых правил[cite: 1].</p>
     <div class="creator-credit">Created by <span>ZEloteS</span></div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО СОСТАВА И СТАТИСТИКИ КОМАНДЫ -->
   <div class="modal-overlay" id="team-modal">
     <div class="modal-card" style="max-width:680px;">
       <button class="modal-close" id="close-team-modal">&times;</button>
@@ -442,7 +459,6 @@
     </div>
   </div>
 
-  <!-- ТЕХ. ПАНЕЛЬ АДМИНИСТРАТОРА -->
   <div class="modal-overlay" id="admin-modal">
     <div class="modal-card">
       <button class="modal-close" id="close-admin-modal">&times;</button>
@@ -479,13 +495,14 @@
       </div>
 
       <div id="pane-teams" class="admin-pane">
-        <div style="margin-bottom:8px; display:flex; gap:8px; flex-wrap:wrap;">
+        <div style="margin-bottom:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
           <label class="btn-mini" style="border-color:var(--red);">
             📂 Загрузить сразу все 10 PNG команд
             <input type="file" id="upload-bulk-logos" accept="image/*" multiple style="display:none;">
           </label>
           <button class="btn-mini" id="admin-add-team">+ Команда</button>
           <button class="btn-mini" id="admin-reset-stats">Обнулить очки (0)</button>
+          <span style="font-size:11px; color:var(--text-muted); margin-left:auto;">Поля: Лого | Клуб | PNG | И | В | ВО | ПО | П | Очки | ЗШ | ПШ</span>
         </div>
         <div id="admin-teams-box"></div>
       </div>
@@ -522,9 +539,8 @@
   </div>
 
   <script>
-    // 1. Пароль Тех. Админа и твоя ссылка на облако npoint.io
     const ADMIN_PASS = "fTsk9A46Q22";
-    const STORAGE_KEY = "ftcl_master_v12";
+    const STORAGE_KEY = "ftcl_master_v13";
     const DEFAULT_CLOUD_URL = "https://api.npoint.io/d8f5e1ad151410d198f7";
 
     const DEFAULT_FTCL_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><circle cx="250" cy="250" r="235" fill="#ffffff" stroke="#e50914" stroke-width="16"/><path d="M 120 110 L 220 380 L 245 320 L 150 110 Z" fill="#111"/><path d="M 380 110 L 280 380 L 255 320 L 350 110 Z" fill="#111"/><ellipse cx="250" cy="340" rx="48" ry="24" fill="#111"/><path d="M 112 305 Q 250 450 388 305" fill="none" stroke="#e50914" stroke-width="26" stroke-linecap="round"/><path d="M 112 195 Q 250 50 388 195" fill="none" stroke="#e50914" stroke-width="26" stroke-linecap="round"/><text x="250" y="272" text-anchor="middle" fill="#e50914" font-family="Arial Black,Impact,sans-serif" font-style="italic" font-weight="900" font-size="110">FTCL</text><text x="250" y="308" text-anchor="middle" fill="#111" font-family="Arial,sans-serif" font-weight="800" font-size="16" letter-spacing="3">FUTURE PUCK CLINE LEAGUE</text></svg>`);
@@ -542,16 +558,16 @@
         { day: "20 окт", time: "19:00 МСК", status: "Скоро", team1: "ДИНАМО МОСКВА", team2: "АВАНГАРД", score: "VS" }
       ],
       standings: [
-        { team: "МЕТАЛЛУРГ",     gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Металлург.png", players: [] },
-        { team: "САЛАВАТ ЮЛАЕВ", gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Салават Юлаев.png", players: [] },
-        { team: "АК БАРС",       gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Ак Барс.png", players: [] },
-        { team: "АВАНГАРД",      gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Авангард.png", players: [] },
-        { team: "ТРАКТОР",       gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Трактор.png", players: [] },
-        { team: "ЛОКОМОТИВ",     gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Локомотив.png", players: [] },
-        { team: "СЕВЕРСТАЛЬ",    gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Северсталь.png", players: [] },
-        { team: "ДИНАМО МИНСК",  gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Динамо Минск.png", players: [] },
-        { team: "ДИНАМО МОСКВА", gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "Динамо Москва.png", players: [] },
-        { team: "ЦСКА",          gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "ЦСКА.png", players: [] }
+        { team: "МЕТАЛЛУРГ",     gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Металлург.png", players: [] },
+        { team: "САЛАВАТ ЮЛАЕВ", gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Салават Юлаев.png", players: [] },
+        { team: "АК БАРС",       gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Ак Барс.png", players: [] },
+        { team: "АВАНГАРД",      gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Авангард.png", players: [] },
+        { team: "ТРАКТОР",       gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Трактор.png", players: [] },
+        { team: "ЛОКОМОТИВ",     gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Локомотив.png", players: [] },
+        { team: "СЕВЕРСТАЛЬ",    gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Северсталь.png", players: [] },
+        { team: "ДИНАМО МИНСК",  gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Динамо Минск.png", players: [] },
+        { team: "ДИНАМО МОСКВА", gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Динамо Москва.png", players: [] },
+        { team: "ЦСКА",          gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "ЦСКА.png", players: [] }
       ],
       leaders: [
         { role: "Лучший снайпер (Голы)", player: "Ожидание игр", team: "Предсезонка FTCL", value: "0" },
@@ -563,16 +579,16 @@
           id: "sec-01", num: "01", title: "Формат и организация матчей",
           blocks: [
             { code: "1.1", heading: "Игровой состав", bullets: [
-              "Матчи регулярного чемпионата и плей-офф проводятся в формате 3+1: три полевых игрока и один вратарь.",
-              "Заявка команды включает от 6 до 10 действующих игроков. Если в составе остаётся меньше шести игроков, администрация лиги может рассмотреть вопрос о допуске команды к соревнованиям.",
-              "Внутри одного состава не допускаются одинаковые игровые имена или номера. Использование вторых или чужих аккаунтов запрещено."
+              "Матчи регулярного чемпионата и плей-офф проводятся в формате 3+1: три полевых игрока и один вратарь[cite: 8].",
+              "Заявка команды включает от 6 до 10 действующих игроков[cite: 8]. Если в составе остаётся меньше шести игроков, администрация лиги может рассмотреть вопрос о допуске команды к соревнованиям[cite: 8].",
+              "Внутри одного состава не допускаются одинаковые игровые имена или номера[cite: 8]. Использование вторых или чужих аккаунтов запрещено[cite: 8]."
             ]},
             { code: "1.2", heading: "Календарь и начало игры", bullets: [
-              "Матчи проводятся по опубликованному календарю лиги. Допустимое ожидание опаздывающей команды — до 15 минут, после чего администрации разрешается зафиксировать техническое поражение.",
-              "При уважительных обстоятельствах администрация может перенести матч, предварительно уведомив обе команды."
+              "Матчи проводятся по опубликованному календарю лиги[cite: 8]. Допустимое ожидание опаздывающей команды — до 15 минут, после чего администрации разрешается зафиксировать техническое поражение[cite: 8].",
+              "При уважительных обстоятельствах администрация может перенести матч, предварительно уведомив обе команды[cite: 8]."
             ]},
             { code: "1.3", heading: "Определение победителя", bullets: [
-              "Если основное время завершилось вничью, проводится овертайм продолжительностью 5 минут. Если равный счёт сохраняется, победитель определяется серией послематчевых буллитов."
+              "Если основное время завершилось вничью, проводится овертайм продолжительностью 5 минут[cite: 8]. Если равный счёт сохраняется, победитель определяется серией послематчевых буллитов[cite: 8]."
             ]}
           ]
         },
@@ -580,12 +596,12 @@
           id: "sec-02", num: "02", title: "Турнирная система и очки",
           blocks: [
             { code: "2.1", heading: "Подтверждение результатов", bullets: [
-              "После завершения матча капитаны команд направляют администрации итоговый счёт и скриншот либо видео со статистикой матча."
+              "После завершения матча капитаны команд направляют администрации итоговый счёт и скриншот либо видео со статистикой матча[cite: 8]."
             ]},
             { code: "2.2", heading: "Начисление очков", bullets: [
-              "Победа в основное время, в овертайме или по буллитам — 2 очка.",
-              "Поражение в овертайме или по буллитам — 1 очко.",
-              "Поражение в основное время — 0 очков."
+              "Победа в основное время, в овертайме или по буллитам — 2 очка[cite: 8].",
+              "Поражение в овертайме или по буллитам — 1 очко[cite: 8].",
+              "Поражение в основное время — 0 очков[cite: 8]."
             ]}
           ]
         },
@@ -593,11 +609,11 @@
           id: "sec-03", num: "03", title: "Составы и переходы игроков",
           blocks: [
             { code: "3.1", heading: "Полномочия капитана", bullets: [
-              "Капитан передаёт администрации актуальный список игроков своей команды, организует набор и следит за соответствием заявки требованиям лиги."
+              "Капитан передаёт администрации актуальный список игроков своей команды, организует набор и следит за соответствием заявки требованиям лиги[cite: 9]."
             ]},
             { code: "3.2", heading: "Переход между командами", bullets: [
-              "Переход или обмен возможен при согласии обеих команд и самого игрока (не более трёх раз за сезон).",
-              "На период плей-офф переходы закрыты."
+              "Переход или обмен возможен при согласии обеих команд и самого игрока (не более трёх раз за сезон)[cite: 9].",
+              "На период плей-офф переходы закрыты[cite: 9]."
             ]}
           ]
         },
@@ -617,13 +633,24 @@
     function safeLoadData() {
       const copy = JSON.parse(JSON.stringify(defaultData));
       try {
-        const keys = [STORAGE_KEY, "ftcl_master_v11", "ftcl_cloud_v10"];
+        const keys = [STORAGE_KEY, "ftcl_master_v12", "ftcl_master_v11", "ftcl_cloud_v10"];
         for (const k of keys) {
           const raw = localStorage.getItem(k);
           if (raw) {
             const parsed = JSON.parse(raw);
             if (parsed && Array.isArray(parsed.standings) && parsed.standings.length > 0) {
-              parsed.standings.forEach(t => { if (!Array.isArray(t.players)) t.players = []; });
+              parsed.standings.forEach(t => {
+                if (!Array.isArray(t.players)) t.players = [];
+                if (t.gf === undefined || t.ga === undefined) {
+                  if (typeof t.goals === "string" && t.goals.includes("-")) {
+                    const parts = t.goals.split("-").map(p => parseInt(p.trim()) || 0);
+                    t.gf = parts[0] || 0;
+                    t.ga = parts[1] || 0;
+                  } else {
+                    t.gf = 0; t.ga = 0;
+                  }
+                }
+              });
               if (!parsed.cloudUrl) parsed.cloudUrl = DEFAULT_CLOUD_URL;
               if (!Array.isArray(parsed.matches) || !parsed.matches.length) parsed.matches = copy.matches;
               if (!Array.isArray(parsed.leaders) || !parsed.leaders.length) parsed.leaders = copy.leaders;
@@ -723,14 +750,33 @@
       renderCalendar();
     };
 
+    function getSortedStandings() {
+      return leagueData.standings
+        .map((team, originalIndex) => {
+          const gf = parseInt(team.gf) || 0;
+          const ga = parseInt(team.ga) || 0;
+          const diff = gf - ga;
+          const pts = parseInt(team.pts) || 0;
+          return { ...team, originalIndex, gf, ga, diff, pts };
+        })
+        .sort((a, b) => {
+          if (b.pts !== a.pts) return b.pts - a.pts;
+          if (b.diff !== a.diff) return b.diff - a.diff;
+          if (b.gf !== a.gf) return b.gf - a.gf;
+          return a.team.localeCompare(b.team);
+        });
+    }
+
     function renderAll() {
       applySiteAvatar();
       renderCalendar();
 
-      document.getElementById("standings-body").innerHTML = leagueData.standings.map((t, i) => {
+      const sorted = getSortedStandings();
+      document.getElementById("standings-body").innerHTML = sorted.map((t, i) => {
         const pCount = Array.isArray(t.players) ? t.players.length : 0;
+        const goalsText = `${t.gf} - ${t.ga}`;
         return `
-          <tr class="${i < 8 ? 'playoff-zone' : ''}" onclick="openTeam(${i})">
+          <tr class="${i < 8 ? 'playoff-zone' : ''}" onclick="openTeam(${t.originalIndex})">
             <td class="rank">${i + 1}</td>
             <td>
               <div class="team-cell">
@@ -739,7 +785,7 @@
                 <span class="roster-badge">${pCount > 0 ? 'Игроков: ' + pCount : 'Состав'}</span>
               </div>
             </td>
-            <td>${t.gp}</td><td>${t.w}</td><td>${t.ot}</td><td>${t.po || 0}</td><td>${t.l}</td><td>${t.goals}</td><td class="pts">${t.pts}</td>
+            <td>${t.gp}</td><td>${t.w}</td><td>${t.ot}</td><td>${t.po || 0}</td><td>${t.l}</td><td>${goalsText}</td><td class="pts">${t.pts}</td>
           </tr>
         `;
       }).join("");
@@ -794,6 +840,8 @@
     window.openTeam = function(i) {
       const t = leagueData.standings[i];
       const players = Array.isArray(t.players) ? t.players : [];
+      const gf = parseInt(t.gf) || 0;
+      const ga = parseInt(t.ga) || 0;
       const rosterHtml = players.length > 0 ? `
         <div class="table-wrap" style="margin-top:12px;">
           <table>
@@ -826,7 +874,7 @@
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
           <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:60px; height:60px; object-fit:contain;">
           <div>
-            <div style="font-size:11px; color:var(--red); font-weight:800; text-transform:uppercase;">Клуб FTCL • Игр: ${t.gp} | Очков: ${t.pts} | Шайбы: ${t.goals}</div>
+            <div style="font-size:11px; color:var(--red); font-weight:800; text-transform:uppercase;">Клуб FTCL • Игр: ${t.gp} | Очков: ${t.pts} | Шайбы: ${gf} - ${ga} (Разница: ${gf - ga >= 0 ? '+' : ''}${gf - ga})</div>
             <h3 style="font-family:'Russo One',sans-serif; font-size:22px;">ХК «${t.team}»</h3>
           </div>
         </div>
@@ -866,7 +914,6 @@
       reader.readAsDataURL(file);
     }
 
-    // Облачная синхронизация через POST для npoint.io
     async function syncFromCloud() {
       const url = (leagueData.cloudUrl || DEFAULT_CLOUD_URL || "").trim();
       if (!url) return;
@@ -905,11 +952,10 @@
           alert("⚠️ Сохранено локально (код ответа облака: " + res.status + ").");
         }
       } catch (err) {
-        alert("✅ Сохранено в браузере! (Если файл открыт локально через file://, облако заработает сразу после загрузки index.html на GitHub Pages).");
+        alert("✅ Сохранено в браузере!");
       }
     }
 
-    // Тех. Панель Админа (Пароль: fTsk9A46Q22)
     let isAuthed = false;
     window.openAdmin = function() {
       if (!isAuthed) {
@@ -966,16 +1012,18 @@
       }).join("");
 
       document.getElementById("admin-teams-box").innerHTML = leagueData.standings.map((t, i) => `
-        <div class="admin-row">
-          <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:30px; height:30px; object-fit:contain;">
+        <div class="admin-team-row">
+          <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:28px; height:28px; object-fit:contain;">
           <input class="admin-input" value="${t.team}" onchange="leagueData.standings[${i}].team=this.value">
-          <label class="btn-mini">📁 PNG<input type="file" accept="image/*" style="display:none;" onchange="uploadTeamLogo(event, ${i})"></label>
-          <input class="admin-input" type="number" value="${t.gp}" onchange="leagueData.standings[${i}].gp=+this.value" title="И">
-          <input class="admin-input" type="number" value="${t.w}" onchange="leagueData.standings[${i}].w=+this.value" title="В">
+          <label class="btn-mini">📁<input type="file" accept="image/*" style="display:none;" onchange="uploadTeamLogo(event, ${i})"></label>
+          <input class="admin-input" type="number" value="${t.gp}" onchange="leagueData.standings[${i}].gp=+this.value" title="Игры (И)">
+          <input class="admin-input" type="number" value="${t.w}" onchange="leagueData.standings[${i}].w=+this.value" title="Победы (В)">
           <input class="admin-input" type="number" value="${t.ot}" onchange="leagueData.standings[${i}].ot=+this.value" title="ВО/ВБ">
           <input class="admin-input" type="number" value="${t.po || 0}" onchange="leagueData.standings[${i}].po=+this.value" title="ПО/ПБ">
-          <input class="admin-input" type="number" value="${t.l}" onchange="leagueData.standings[${i}].l=+this.value" title="П">
-          <input class="admin-input" type="number" value="${t.pts}" onchange="leagueData.standings[${i}].pts=+this.value" title="Очки">
+          <input class="admin-input" type="number" value="${t.l}" onchange="leagueData.standings[${i}].l=+this.value" title="Поражения (П)">
+          <input class="admin-input" type="number" value="${t.pts}" onchange="leagueData.standings[${i}].pts=+this.value" title="Очки" style="font-weight:800; border-color:var(--red);">
+          <input class="admin-input" type="number" value="${t.gf || 0}" onchange="leagueData.standings[${i}].gf=+this.value" title="Забитые шайбы (ЗШ)">
+          <input class="admin-input" type="number" value="${t.ga || 0}" onchange="leagueData.standings[${i}].ga=+this.value" title="Пропущенные шайбы (ПШ)">
           <button class="btn-mini" onclick="leagueData.standings.splice(${i},1);renderAdmin();">✕</button>
         </div>
       `).join("");
@@ -1083,12 +1131,12 @@
     });
 
     document.getElementById("admin-add-team").onclick = () => {
-      leagueData.standings.push({ team: "НОВАЯ КОМАНДА", gp: 0, w: 0, ot: 0, po: 0, l: 0, goals: "0 - 0", pts: 0, avatar: "", players: [] });
+      leagueData.standings.push({ team: "НОВАЯ КОМАНДА", gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "", players: [] });
       renderAdmin();
     };
     document.getElementById("admin-reset-stats").onclick = () => {
-      leagueData.standings.forEach(t => { t.gp = 0; t.w = 0; t.ot = 0; t.po = 0; t.l = 0; t.goals = "0 - 0"; t.pts = 0; });
-      renderAdmin();
+      leagueData.standings.forEach(t => { t.gp = 0; t.w = 0; t.ot = 0; t.po = 0; t.l = 0; t.gf = 0; t.ga = 0; t.pts = 0; });
+      renderAdmin(); renderAll();
     };
     document.getElementById("admin-reset-cache").onclick = () => {
       if (!confirm("Сбросить локальный кэш браузера к чистой базе?")) return;
