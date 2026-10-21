@@ -57,33 +57,52 @@
 
     header {
       position: sticky; top: 0; z-index: 1000;
-      background: rgba(9, 11, 16, 0.82);
+      background: rgba(9, 11, 16, 0.85);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(229, 9, 20, 0.35);
       transition: background 0.35s var(--smooth);
     }
-    .nav-container { max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ice-white); transition: transform 0.35s var(--smooth); }
+    .nav-container { max-width: 1200px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ice-white); transition: transform 0.35s var(--smooth); flex-shrink: 0; }
     .brand:hover { transform: scale(1.02); }
-    .brand img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--red); background: #fff; box-shadow: 0 0 14px var(--red-glow); transition: transform 0.4s var(--smooth); }
-    .brand:hover img { transform: rotate(-5deg); }
-    .brand-title { font-family: 'Russo One', sans-serif; font-size: 24px; font-style: italic; color: var(--red); line-height: 1.1; }
-    .brand-sub { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; display: block; color: var(--ice-white); }
+    .brand img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--red); background: #fff; box-shadow: 0 0 14px var(--red-glow); }
+    .brand-title { font-family: 'Russo One', sans-serif; font-size: 22px; font-style: italic; color: var(--red); line-height: 1.05; }
+    .brand-sub { font-size: 9.5px; font-weight: 800; letter-spacing: 1.6px; display: block; color: var(--ice-white); }
     .brand-sub span { color: var(--red); }
 
-    nav.desktop-nav { display: flex; align-items: center; gap: 28px; }
+    nav.desktop-nav { display: flex; align-items: center; gap: 24px; }
     nav.desktop-nav a { position: relative; color: var(--ice-white); text-decoration: none; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; padding: 6px 0; transition: color 0.3s var(--smooth); }
     nav.desktop-nav a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--red); border-radius: 2px; transform: scaleX(0); transition: transform 0.35s var(--smooth); }
     nav.desktop-nav a:hover { color: #fff; }
     nav.desktop-nav a:hover::after { transform: scaleX(1); }
 
-    .hud-top-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
-    .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
+    /* ПОЛЕЗНЫЙ ВИДЖЕТ В ШАПКЕ (СЛЕДУЮЩИЙ МАТЧ / LIVE + СТРИМ) */
+    .header-right-actions { display: flex; align-items: center; gap: 8px; }
+    .smart-match-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11.5px; font-weight: 700; color: var(--ice-white);
+      padding: 6px 12px; border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
+      text-decoration: none; transition: all 0.25s var(--smooth);
+      max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .smart-match-pill:hover { border-color: var(--red); background: var(--red-soft); }
+    .smart-match-pill.is-live { background: rgba(229, 9, 20, 0.18); border-color: var(--red); color: #fff; }
+    .stream-pill-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      padding: 6px 11px; border-radius: 20px;
+      background: #9146ff; color: #fff; text-decoration: none;
+      box-shadow: 0 3px 12px rgba(145, 70, 255, 0.35);
+      transition: all 0.25s var(--smooth); flex-shrink: 0;
+    }
+    .stream-pill-btn:hover { background: #a362ff; transform: translateY(-1px); }
+    .stream-pill-btn svg { width: 13px; height: 13px; fill: currentColor; }
 
     .mobile-hud {
       display: none; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
       width: calc(100% - 28px); max-width: 380px; z-index: 1500;
-      background: rgba(13, 16, 23, 0.9); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      background: rgba(13, 16, 23, 0.92); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
       border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 22px; padding: 5px;
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.85); justify-content: space-between; gap: 4px;
     }
@@ -192,177 +211,170 @@
     .rule-subblock ul { padding-left: 16px; font-size: 13px; color: #dce3ec; display: flex; flex-direction: column; gap: 4px; }
 
     footer { margin-top: 40px; border-top: 1px solid var(--border); padding: 28px 16px 100px; text-align: center; color: var(--text-muted); font-size: 12.5px; }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
+    .social-links { display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 16px; }
     .social-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ice-white);
-      text-decoration: none;
-      transition: all 0.35s var(--smooth);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--ice-white); text-decoration: none; transition: all 0.35s var(--smooth);
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
     .social-btn svg { width: 22px; height: 22px; fill: currentColor; transition: transform 0.3s var(--smooth); }
-    .social-btn:hover {
-      background: var(--red);
-      border-color: var(--red);
-      color: #fff;
-      transform: translateY(-4px) scale(1.08);
-      box-shadow: 0 8px 20px var(--red-glow);
-    }
-    .social-btn:hover svg { transform: scale(1.05); }
+    .social-btn:hover { background: var(--red); border-color: var(--red); color: #fff; transform: translateY(-4px) scale(1.08); box-shadow: 0 8px 20px var(--red-glow); }
 
     #secret-admin-trigger { cursor: pointer; user-select: none; margin-bottom: 14px; }
     .creator-credit {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 16px; border-radius: 20px;
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 20px;
       background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(229, 9, 20, 0.35);
-      font-size: 12px; font-weight: 700; color: var(--ice-white);
-      letter-spacing: 0.8px; transition: all 0.35s var(--smooth);
+      font-size: 12px; font-weight: 700; color: var(--ice-white); letter-spacing: 0.8px; transition: all 0.35s var(--smooth);
     }
     .creator-credit span { font-family: 'Russo One', sans-serif; color: var(--red); letter-spacing: 1.2px; }
     .creator-credit:hover { border-color: var(--red); box-shadow: 0 0 16px var(--red-glow); transform: translateY(-2px); }
 
+    /* ==========================================================================
+       УДОБНАЯ МОБИЛЬНАЯ И ДЕСКТОПНАЯ ТЕХ. ПАНЕЛЬ
+       ========================================================================== */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(5, 6, 9, 0.84);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: fixed; inset: 0; background: rgba(5, 6, 9, 0.86);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 12px;
       opacity: 0; pointer-events: none; transition: opacity 0.3s var(--smooth);
     }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-card {
-      background: #11141c; border: 1px solid var(--border); border-top: 4px solid var(--red);
-      border-radius: 14px; width: 100%; max-width: 1120px; max-height: 92vh; overflow-y: auto;
-      padding: 20px; position: relative; transform: scale(0.96) translateY(10px);
-      transition: transform 0.35s var(--smooth); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      background: #10131b; border: 1px solid var(--border); border-top: 4px solid var(--red);
+      border-radius: 16px; width: 100%; max-width: 960px; max-height: 92vh;
+      display: flex; flex-direction: column; overflow: hidden;
+      position: relative; transform: scale(0.96) translateY(10px);
+      transition: transform 0.35s var(--smooth); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
     }
     .modal-overlay.active .modal-card { transform: scale(1) translateY(0); }
-    .modal-close { position: absolute; top: 12px; right: 12px; background: #1c212b; border: 1px solid var(--border); color: #fff; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+
+    .admin-sticky-header {
+      padding: 14px 16px 10px; background: #10131b; border-bottom: 1px solid var(--border);
+      flex-shrink: 0; z-index: 10;
+    }
+    .admin-top-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+    .admin-title { font-family: 'Russo One', sans-serif; font-size: 16px; color: var(--red); display: flex; align-items: center; gap: 8px; }
+    .modal-close { background: #1c212b; border: 1px solid var(--border); color: #fff; width: 34px; height: 34px; border-radius: 10px; font-size: 18px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
     .modal-close:hover { background: var(--red); border-color: var(--red); }
 
-    .admin-tabs { display: flex; gap: 6px; margin: 10px 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
-    .admin-tab { padding: 8px 12px; background: #181c26; border: 1px solid var(--border); color: var(--text-muted); border-radius: 8px; font-size: 11.5px; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
-    .admin-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .admin-scroll-body { padding: 14px 16px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+
+    .admin-sticky-footer {
+      padding: 10px 16px; background: #0c0e14; border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      flex-shrink: 0; z-index: 10;
+    }
+
+    /* Сворачиваемые настройки облака и логотипа */
+    .admin-settings-drawer {
+      display: none; background: #0b0d13; border: 1px solid rgba(229, 9, 20, 0.35);
+      border-radius: 12px; padding: 12px; margin-bottom: 12px; gap: 10px; flex-direction: column;
+    }
+    .admin-settings-drawer.open { display: flex; animation: softFade 0.25s var(--smooth); }
+
+    .admin-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+    .admin-tabs::-webkit-scrollbar { display: none; }
+    .admin-tab {
+      padding: 9px 13px; background: #171b26; border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 10px; font-size: 12px; font-weight: 800;
+      white-space: nowrap; cursor: pointer; transition: 0.2s; flex: 1; text-align: center;
+    }
+    .admin-tab.active { background: var(--red); border-color: var(--red); color: #fff; box-shadow: 0 4px 12px var(--red-glow); }
     .admin-pane { display: none; animation: softFade 0.25s var(--smooth); }
     .admin-pane.active { display: block; }
-    .admin-box { background: #0c0e13; border: 1px solid rgba(229, 9, 20, 0.35); border-radius: 10px; padding: 10px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-    .admin-team-row {
-      display: grid;
-      grid-template-columns: 34px 1.4fr auto repeat(5, 42px) 48px 48px 46px auto;
-      gap: 5px;
-      align-items: center;
-      margin-bottom: 6px;
-      background: #0c0e13;
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+    /* КАРТОЧКА МАТЧА В АДМИНКЕ (УДОБНАЯ ДЛЯ ТЕЛЕФОНА) */
+    .admin-match-card {
+      background: #0b0d13; border: 1px solid var(--border); border-left: 3px solid var(--red);
+      border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 10px;
     }
-    .admin-match-row {
-      display: grid;
-      grid-template-columns: 125px 86px 132px 1fr auto 105px 1fr auto;
-      gap: 6px;
-      align-items: center;
-      margin-bottom: 8px;
-      background: #0c0e13;
-      padding: 8px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-    .score-stepper-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: #141822;
-      padding: 4px 6px;
-      border-radius: 8px;
-      border: 1px solid rgba(229, 9, 20, 0.35);
-    }
+    .amc-header { display: grid; grid-template-columns: 1fr 1fr 1.2fr auto; gap: 6px; align-items: center; }
+    .amc-teams-score { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; background: #121620; padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); }
+    .amc-stepper { display: inline-flex; align-items: center; gap: 4px; }
     .step-btn {
-      width: 24px;
-      height: 26px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: #1e2433;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.18s;
-      user-select: none;
+      width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
+      background: #1c2230; color: #fff; font-weight: 800; font-size: 18px;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+      user-select: none; transition: 0.15s;
     }
-    .step-btn:hover { background: var(--red); border-color: var(--red); }
+    .step-btn:active, .step-btn:hover { background: var(--red); border-color: var(--red); }
     .score-select {
-      background: #0c0e13;
-      color: #fff;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 3px 4px;
-      font-family: 'Russo One', sans-serif;
-      font-size: 13px;
-      text-align: center;
-      cursor: pointer;
+      height: 36px; min-width: 48px; background: #090b10; color: #fff;
+      border: 1px solid rgba(229, 9, 20, 0.45); border-radius: 8px;
+      font-family: 'Russo One', sans-serif; font-size: 15px; text-align: center; cursor: pointer;
     }
-    .vs-reset-btn {
-      padding: 3px 6px;
-      font-size: 10px;
-      font-weight: 800;
-      border-radius: 5px;
-      border: 1px solid var(--border);
-      background: #1a1f2c;
-      color: var(--text-muted);
-      cursor: pointer;
+    .amc-footer { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+    .finish-pills { display: flex; gap: 5px; flex: 1; }
+    .finish-pill {
+      flex: 1; padding: 7px 8px; border-radius: 8px; border: 1px solid var(--border);
+      background: #151924; color: var(--text-muted); font-size: 11px; font-weight: 800;
+      cursor: pointer; text-align: center; transition: 0.2s;
     }
-    .vs-reset-btn.active {
-      background: rgba(229, 9, 20, 0.25);
-      color: #fff;
-      border-color: var(--red);
-    }
+    .finish-pill.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .finish-pill.vs-pill.active { background: #334155; border-color: #64748b; color: #fff; }
 
-    .admin-player-row { display: grid; grid-template-columns: 60px 1.4fr 130px repeat(4, 52px) auto; gap: 5px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
-    .admin-leader-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 80px auto; gap: 6px; align-items: center; margin-bottom: 6px; background: #0c0e13; padding: 6px; border-radius: 8px; }
-    .admin-input { width: 100%; padding: 6px 8px; background: #161a24; border: 1px solid var(--border); border-radius: 6px; color: #fff; font-size: 12px; }
-    .btn-mini { padding: 7px 11px; background: #181c26; border: 1px solid var(--border); color: #fff; border-radius: 7px; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: 0.2s; }
+    /* КАРТОЧКА КОМАНДЫ В АДМИНКЕ С ПОДПИСЯМИ ПОЛЕЙ */
+    .admin-team-card {
+      background: #0b0d13; border: 1px solid var(--border); border-radius: 12px;
+      padding: 10px 12px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .atc-top { display: flex; align-items: center; gap: 8px; }
+    .atc-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+    .field-mini { display: flex; flex-direction: column; gap: 2px; }
+    .field-mini span { font-size: 9.5px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; text-align: center; }
+    .field-mini input { text-align: center; font-weight: 700; padding: 6px 2px; }
+
+    /* КАРТОЧКА ИГРОКА И ЛИДЕРА В АДМИНКЕ */
+    .admin-player-card {
+      background: #0b0d13; border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .apc-top { display: grid; grid-template-columns: 65px 1fr 130px auto; gap: 6px; align-items: center; }
+    .apc-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
+    .admin-input { width: 100%; height: 36px; padding: 6px 10px; background: #161a24; border: 1px solid var(--border); border-radius: 8px; color: #fff; font-size: 13px; }
+    .btn-mini { padding: 8px 12px; background: #181c26; border: 1px solid var(--border); color: #fff; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
     .btn-mini:hover { border-color: var(--red); }
 
-    @media (max-width: 980px) {
+    @media (max-width: 860px) {
       .rules-layout { grid-template-columns: 1fr; }
-      .admin-match-row { grid-template-columns: 1fr 1fr; }
-      .score-stepper-box { grid-column: 1 / -1; justify-content: center; }
-      .admin-player-row, .admin-leader-row, .admin-team-row { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       nav.desktop-nav { display: none; }
       .mobile-hud { display: flex; }
+      .nav-container { padding: 8px 12px; }
+      .brand img { width: 36px; height: 36px; }
+      .brand-title { font-size: 19px; }
+      .brand-sub { display: none; }
+      .smart-match-pill { max-width: 175px; font-size: 10.5px; padding: 5px 9px; }
+      .stream-pill-btn span { display: none; }
+      .stream-pill-btn { padding: 7px 9px; }
+
       .hero { grid-template-columns: 1fr; text-align: center; padding: 22px 16px 18px; gap: 16px; }
       .hero-logo-box { order: -1; }
-      .hero-logo-box img { width: 150px; height: 150px; }
+      .hero-logo-box img { width: 145px; height: 145px; }
       .hero h1 { font-size: 30px; }
       .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
       .btn-group .btn:first-child { grid-column: 1 / -1; }
       .section { padding: 22px 14px; }
       .section-header h2 { font-size: 18px; }
       .calendar-toggle-btn { width: 100%; justify-content: center; }
+
+      /* Полноэкранная шторка Тех. Панели на телефоне */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal-card { max-height: 96vh; height: 96vh; border-radius: 18px 18px 0 0; }
+      .amc-header { grid-template-columns: 1fr 1fr; }
+      .atc-grid { grid-template-columns: repeat(4, 1fr); }
+      .apc-top { grid-template-columns: 60px 1fr auto; }
+      .apc-top select { grid-column: 1 / -1; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ВЕРХНЯЯ ШАПКА С ПОЛЕЗНЫМ ВИДЖЕТОМ МАТЧА И КНОПКОЙ СТРИМА -->
   <header>
     <div class="nav-container">
       <a href="#" class="brand">
@@ -378,9 +390,15 @@
         <a href="#leaders">Лидеры</a>
         <a href="#rules">Регламент</a>
       </nav>
-      <div class="hud-top-status">
-        <span class="sync-dot"></span>
-        <span id="cloud-status-text">FTCL LIVE</span>
+      <div class="header-right-actions">
+        <a href="#matches" id="smart-header-pill" class="smart-match-pill" title="Перейти к матчам">
+          <span class="sync-dot" id="smart-header-dot"></span>
+          <span id="smart-header-text">Загрузка расписания...</span>
+        </a>
+        <a href="https://twitch.tv/ftclstream" target="_blank" rel="noopener noreferrer" class="stream-pill-btn" title="Прямой эфир на Twitch">
+          <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+          <span>Стрим</span>
+        </a>
       </div>
     </div>
   </header>
@@ -497,8 +515,8 @@
         <strong style="font-family:'Russo One',sans-serif; font-size:14px; text-transform:uppercase;">Структура регламента</strong>
         <ul class="rules-toc" id="rules-toc"></ul>
         <div style="display:flex; gap:6px; margin-top:10px;">
-          <button class="btn-mini" id="expand-rules" style="flex:1; justify-content:center;">Открыть все</button>
-          <button class="btn-mini" id="collapse-rules" style="flex:1; justify-content:center;">Свернуть</button>
+          <button class="btn-mini" id="expand-rules" style="flex:1;">Открыть все</button>
+          <button class="btn-mini" id="collapse-rules" style="flex:1;">Свернуть</button>
         </div>
       </aside>
       <div>
@@ -524,87 +542,103 @@
     <div class="creator-credit">Created by <span>ZEloteS</span></div>
   </footer>
 
+  <!-- МОДАЛЬНОЕ ОКНО СОСТАВА КОМАНДЫ -->
   <div class="modal-overlay" id="team-modal">
-    <div class="modal-card" style="max-width:680px;">
-      <button class="modal-close" id="close-team-modal">&times;</button>
-      <div id="team-modal-body"></div>
+    <div class="modal-card" style="max-width:680px; height:auto; max-height:88vh;">
+      <div class="admin-sticky-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <strong style="font-family:'Russo One',sans-serif; color:var(--red);">Состав и статистика клуба</strong>
+        <button class="modal-close" id="close-team-modal">&times;</button>
+      </div>
+      <div class="admin-scroll-body" id="team-modal-body"></div>
     </div>
   </div>
 
+  <!-- МОБИЛЬНАЯ И ДЕСКТОПНАЯ ТЕХ. ПАНЕЛЬ АДМИНА -->
   <div class="modal-overlay" id="admin-modal">
     <div class="modal-card">
-      <button class="modal-close" id="close-admin-modal">&times;</button>
-      <h3 style="font-family:'Russo One',sans-serif; color:var(--red); margin-bottom:8px;">⚙️ Тех. Панель Администратора FTCL</h3>
-
-      <div class="admin-box">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <img id="admin-site-avatar-preview" style="width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--red); background:#fff;" alt="Logo">
-          <label class="btn-mini" style="background:var(--red); border-color:var(--red);">
-            🖼️ Аватарка сайта с ПК
-            <input type="file" id="upload-site-logo" accept="image/*" style="display:none;">
-          </label>
-          <input id="admin-site-logo-url" class="admin-input" style="width:135px;" placeholder="URL или logo.jpg">
-        </div>
-        <div style="display:flex; align-items:center; gap:6px; flex:1; min-width:240px;">
-          <input id="admin-cloud-url" class="admin-input" placeholder="☁️ Ссылка на базу npoint.io">
-          <button class="btn-mini" id="admin-reset-cache" style="color:#ff5c64;">🔄 Сброс кэша</button>
-        </div>
-      </div>
-
-      <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchAdminTab('pane-matches', this)">📅 Матчи (Кнопки 0–20 + Авто-время)</button>
-        <button class="admin-tab" onclick="switchAdminTab('pane-teams', this)">🏆 Таблица и Клубы</button>
-        <button class="admin-tab" onclick="switchAdminTab('pane-rosters', this)">👥 Составы и стата игроков</button>
-        <button class="admin-tab" onclick="switchAdminTab('pane-leaders', this)">🌟 Лидеры турнира</button>
-      </div>
-
-      <div id="pane-matches" class="admin-pane active">
-        <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-          <span style="font-size:12px; color:var(--text-muted);">Выбирай дату, время МСК и выставляй голы кнопками <strong>– / + (до 20 голов)</strong>. Статус (Скоро / LIVE / Завершен) и таблица обновляются сами:</span>
-          <button class="btn-mini" id="admin-add-match" style="background:var(--red); border-color:var(--red);">+ Добавить матч</button>
-        </div>
-        <div id="admin-matches-box"></div>
-      </div>
-
-      <div id="pane-teams" class="admin-pane">
-        <div style="margin-bottom:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-          <label class="btn-mini" style="border-color:var(--red);">
-            📂 Загрузить сразу все 10 PNG команд
-            <input type="file" id="upload-bulk-logos" accept="image/*" multiple style="display:none;">
-          </label>
-          <button class="btn-mini" id="admin-recalc-btn" style="background:rgba(16,185,129,0.18); border-color:#10b981;">⚡ Пересчитать по календарю</button>
-          <button class="btn-mini" id="admin-add-team">+ Команда</button>
-          <button class="btn-mini" id="admin-reset-stats">Обнулить очки (0)</button>
-          <span style="font-size:11px; color:var(--text-muted); margin-left:auto;">Лого | Клуб | PNG | И | В | ВО | ПО | П | Очки | ЗШ | ПШ</span>
-        </div>
-        <div id="admin-teams-box"></div>
-      </div>
-
-      <div id="pane-rosters" class="admin-pane">
-        <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#0c0e13; padding:10px; border-radius:8px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <strong style="font-size:12px;">Выбери клуб:</strong>
-            <select id="admin-roster-team-select" class="admin-input" style="width:210px;" onchange="renderAdminRoster()"></select>
+      <!-- Закрепленная шапка админки -->
+      <div class="admin-sticky-header">
+        <div class="admin-top-bar">
+          <div class="admin-title">⚙️ Тех. Панель FTCL</div>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <button type="button" class="btn-mini" onclick="document.getElementById('admin-settings-drawer').classList.toggle('open')">
+              ⚙️ База и лого
+            </button>
+            <button class="modal-close" id="close-admin-modal">&times;</button>
           </div>
-          <button class="btn-mini" id="admin-add-player" style="background:var(--red); border-color:var(--red);">+ Добавить игрока в состав</button>
         </div>
-        <div style="font-size:11px; color:var(--text-muted); margin-bottom:6px;">Поля игрока: Номер (#) | Игровой ник | Амплуа | Игры (И) | Голы (Г) | Передачи (П) | Очки (О)</div>
-        <div id="admin-roster-players-box"></div>
+
+        <!-- Сворачиваемый блок настроек облака и аватарки сайта -->
+        <div class="admin-settings-drawer" id="admin-settings-drawer">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <img id="admin-site-avatar-preview" style="width:38px; height:38px; border-radius:50%; object-fit:cover; border:2px solid var(--red); background:#fff;" alt="Logo">
+            <label class="btn-mini" style="background:var(--red); border-color:var(--red);">
+              🖼️ Загрузить лого
+              <input type="file" id="upload-site-logo" accept="image/*" style="display:none;">
+            </label>
+            <input id="admin-site-logo-url" class="admin-input" style="flex:1; min-width:130px;" placeholder="URL или logo.jpg">
+          </div>
+          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+            <input id="admin-cloud-url" class="admin-input" style="flex:1; min-width:180px;" placeholder="☁️ Ссылка npoint.io">
+            <button class="btn-mini" id="admin-reset-cache" style="color:#ff5c64;">🔄 Сброс кэша</button>
+          </div>
+        </div>
+
+        <!-- Вкладки админки -->
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="switchAdminTab('pane-matches', this)">📅 Матчи</button>
+          <button class="admin-tab" onclick="switchAdminTab('pane-teams', this)">🏆 Клубы</button>
+          <button class="admin-tab" onclick="switchAdminTab('pane-rosters', this)">👥 Составы</button>
+          <button class="admin-tab" onclick="switchAdminTab('pane-leaders', this)">🌟 Лидеры</button>
+        </div>
       </div>
 
-      <div id="pane-leaders" class="admin-pane">
-        <div style="margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:12px; color:var(--text-muted);">Карточки лидеров турнира:</span>
-          <button class="btn-mini" id="admin-add-leader" style="background:var(--red); border-color:var(--red);">+ Добавить номинацию</button>
+      <!-- Прокручиваемая рабочая область -->
+      <div class="admin-scroll-body">
+        <div id="pane-matches" class="admin-pane active">
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <span style="font-size:11.5px; color:var(--text-muted);">Нажимай <strong>– / +</strong> для счета и выбирай <strong>Осн. / ОТ / Буллиты</strong> — таблица обновится сама:</span>
+            <button class="btn-mini" id="admin-add-match" style="background:var(--red); border-color:var(--red); flex-shrink:0;">+ Матч</button>
+          </div>
+          <div id="admin-matches-box"></div>
         </div>
-        <div id="admin-leaders-box"></div>
+
+        <div id="pane-teams" class="admin-pane">
+          <div style="margin-bottom:10px; display:flex; gap:6px; flex-wrap:wrap;">
+            <label class="btn-mini" style="border-color:var(--red);">
+              📂 Загрузить PNG клубов
+              <input type="file" id="upload-bulk-logos" accept="image/*" multiple style="display:none;">
+            </label>
+            <button class="btn-mini" id="admin-recalc-btn" style="background:rgba(16,185,129,0.18); border-color:#10b981;">⚡ Авто-пересчет по играм</button>
+            <button class="btn-mini" id="admin-add-team">+ Клуб</button>
+            <button class="btn-mini" id="admin-reset-stats">Обнулить (0)</button>
+          </div>
+          <div id="admin-teams-box"></div>
+        </div>
+
+        <div id="pane-rosters" class="admin-pane">
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#0b0d13; padding:10px; border-radius:10px; border:1px solid var(--border);">
+            <select id="admin-roster-team-select" class="admin-input" style="flex:1; min-width:170px;" onchange="renderAdminRoster()"></select>
+            <button class="btn-mini" id="admin-add-player" style="background:var(--red); border-color:var(--red);">+ Игрок</button>
+          </div>
+          <div id="admin-roster-players-box"></div>
+        </div>
+
+        <div id="pane-leaders" class="admin-pane">
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:12px; color:var(--text-muted);">Карточки лучших игроков:</span>
+            <button class="btn-mini" id="admin-add-leader" style="background:var(--red); border-color:var(--red);">+ Номинация</button>
+          </div>
+          <div id="admin-leaders-box"></div>
+        </div>
       </div>
 
-      <div style="margin-top:14px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--border);">
-        <button class="btn-mini" id="admin-export-html" style="background:#1e293b; border-color:#475569; padding:10px 14px;">
-          💾 Скачать готовый index.html
+      <!-- Закрепленный нижний бар сохранения -->
+      <div class="admin-sticky-footer">
+        <button class="btn-mini" id="admin-export-html" style="background:#1e293b; border-color:#475569; padding:10px 12px;">
+          💾 Скачать .html
         </button>
-        <button class="btn btn-primary" id="admin-save" style="padding:10px 22px; font-size:13px;">
+        <button class="btn btn-primary" id="admin-save" style="flex:1; padding:11px 16px; font-size:13px;">
           ☁️ Сохранить для всех устройств
         </button>
       </div>
@@ -613,9 +647,9 @@
 
   <script>
     const ADMIN_PASS = "fTsk9A46Q22";
-    const STORAGE_KEY = "ftcl_master_v15";
+    const STORAGE_KEY = "ftcl_master_v16";
     const DEFAULT_CLOUD_URL = "https://api.npoint.io/d8f5e1ad151410d198f7";
-    const MATCH_LIVE_DURATION_MS = 45 * 60 * 1000; // 45 минут длится LIVE-статус матча
+    const MATCH_LIVE_DURATION_MS = 45 * 60 * 1000;
 
     const DEFAULT_FTCL_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><circle cx="250" cy="250" r="235" fill="#ffffff" stroke="#e50914" stroke-width="16"/><path d="M 120 110 L 220 380 L 245 320 L 150 110 Z" fill="#111"/><path d="M 380 110 L 280 380 L 255 320 L 350 110 Z" fill="#111"/><ellipse cx="250" cy="340" rx="48" ry="24" fill="#111"/><path d="M 112 305 Q 250 450 388 305" fill="none" stroke="#e50914" stroke-width="26" stroke-linecap="round"/><path d="M 112 195 Q 250 50 388 195" fill="none" stroke="#e50914" stroke-width="26" stroke-linecap="round"/><text x="250" y="272" text-anchor="middle" fill="#e50914" font-family="Arial Black,Impact,sans-serif" font-style="italic" font-weight="900" font-size="110">FTCL</text><text x="250" y="308" text-anchor="middle" fill="#111" font-family="Arial,sans-serif" font-weight="800" font-size="16" letter-spacing="3">FUTURE PUCK CLINE LEAGUE</text></svg>`);
 
@@ -761,14 +795,17 @@
       return m;
     }
 
-    // Определение статуса матча по московскому времени (UTC+3)
+    function getMatchStartMs(m) {
+      const iso = m.dateISO || "2026-10-21";
+      const tVal = m.timeVal || "18:00";
+      return Date.parse(`${iso}T${tVal}:00+03:00`);
+    }
+
     function getEffectiveStatus(m) {
       if (m.statusMode && m.statusMode !== "AUTO") {
         return m.statusMode;
       }
-      const iso = m.dateISO || "2026-10-21";
-      const tVal = m.timeVal || "18:00";
-      const startMs = Date.parse(`${iso}T${tVal}:00+03:00`);
+      const startMs = getMatchStartMs(m);
       if (isNaN(startMs)) return m.status || "Скоро";
 
       const nowMs = Date.now();
@@ -780,7 +817,7 @@
     function safeLoadData() {
       const copy = JSON.parse(JSON.stringify(defaultData));
       try {
-        const keys = [STORAGE_KEY, "ftcl_master_v14", "ftcl_master_v13", "ftcl_master_v12"];
+        const keys = [STORAGE_KEY, "ftcl_master_v15", "ftcl_master_v14", "ftcl_master_v13"];
         for (const k of keys) {
           const raw = localStorage.getItem(k);
           if (raw) {
@@ -820,7 +857,6 @@
     let currentStatusFilter = "ALL";
     let isCalendarCollapsed = false;
 
-    // Автоматический пересчет турнирной таблицы по результатам из календаря
     function recalculateStandingsFromMatches() {
       leagueData.standings.forEach(t => {
         t.gp = 0; t.w = 0; t.ot = 0; t.po = 0; t.l = 0; t.gf = 0; t.ga = 0; t.pts = 0;
@@ -828,10 +864,8 @@
 
       leagueData.matches.forEach(m => {
         normalizeMatchObject(m);
-        const effStatus = getEffectiveStatus(m);
-        m.status = effStatus;
+        m.status = getEffectiveStatus(m);
 
-        // Учитываем матч в таблице, если в нем выставлен счет кнопками (не ничья) и он завершен (или счет уже внесен)
         if (!m.scoreSet) return;
         const g1 = parseInt(m.g1, 10) || 0;
         const g2 = parseInt(m.g2, 10) || 0;
@@ -869,6 +903,46 @@
       leagueData.standings.forEach(t => {
         t.goals = `${t.gf} - ${t.ga}`;
       });
+    }
+
+    // Обновление полезного виджета в правом верхнем углу
+    function updateSmartHeaderWidget() {
+      const pill = document.getElementById("smart-header-pill");
+      const textEl = document.getElementById("smart-header-text");
+      const dotEl = document.getElementById("smart-header-dot");
+      if (!pill || !textEl || !dotEl) return;
+
+      const liveMatch = leagueData.matches.find(m => getEffectiveStatus(m) === "LIVE");
+      if (liveMatch) {
+        pill.classList.add("is-live");
+        pill.href = "#matches";
+        dotEl.style.background = "#e50914";
+        dotEl.style.boxShadow = "0 0 8px #e50914";
+        const sc = liveMatch.scoreSet ? `${liveMatch.g1}:${liveMatch.g2}` : "0:0";
+        textEl.textContent = `LIVE: ${liveMatch.team1} ${sc} ${liveMatch.team2}`;
+        return;
+      }
+
+      pill.classList.remove("is-live");
+      const upcoming = leagueData.matches
+        .filter(m => getEffectiveStatus(m) === "Скоро")
+        .sort((a, b) => (getMatchStartMs(a) || 0) - (getMatchStartMs(b) || 0));
+
+      if (upcoming.length > 0) {
+        const next = upcoming[0];
+        pill.href = "#matches";
+        dotEl.style.background = "#f59e0b";
+        dotEl.style.boxShadow = "0 0 8px #f59e0b";
+        textEl.textContent = `След: ${next.team1} — ${next.team2} (${next.timeVal || next.time})`;
+        return;
+      }
+
+      const sorted = getSortedStandings();
+      const top = sorted[0];
+      pill.href = "#standings";
+      dotEl.style.background = "#10b981";
+      dotEl.style.boxShadow = "0 0 8px #10b981";
+      textEl.textContent = top ? `🏆 Лидер: ${top.team} (${top.pts} очк.)` : "Таблица FTCL";
     }
 
     window.toggleCalendarSection = function() {
@@ -986,6 +1060,7 @@
       recalculateStandingsFromMatches();
       applySiteAvatar();
       renderCalendar();
+      updateSmartHeaderWidget();
 
       const sorted = getSortedStandings();
       document.getElementById("standings-body").innerHTML = sorted.map((t, i) => {
@@ -1162,7 +1237,7 @@
           body: JSON.stringify(leagueData)
         });
         if (res.ok) {
-          alert("☁️ Сохранено в Облако! Турнирная таблица и календарь обновлены на всех устройствах.");
+          alert("☁️ Сохранено в Облако! Таблица и календарь обновлены на всех устройствах.");
         } else {
           alert("⚠️ Сохранено локально (код ответа облака: " + res.status + ").");
         }
@@ -1171,12 +1246,13 @@
       }
     }
 
-    let isAuthed = false;
+    let isAuthed = sessionStorage.getItem("ftcl_admin_authed") === "1";
     window.openAdmin = function() {
       if (!isAuthed) {
         const p = prompt("🔒 Введите пароль Тех. Админа FTCL:");
         if (p !== ADMIN_PASS) { if (p !== null) alert("Неверный пароль!"); return; }
         isAuthed = true;
+        sessionStorage.setItem("ftcl_admin_authed", "1");
       }
       renderAdmin();
       document.getElementById("admin-modal").classList.add("active");
@@ -1198,7 +1274,6 @@
       btn.classList.add("active");
     };
 
-    // Управление датой, временем и полями матча
     window.onMatchDateChange = function(i, isoVal) {
       leagueData.matches[i].dateISO = isoVal;
       leagueData.matches[i].day = formatIsoToRusDay(isoVal);
@@ -1226,7 +1301,6 @@
       renderAdmin();
     };
 
-    // Кнопки изменения голов (от 0 до 20)
     window.stepTeamGoal = function(i, teamNum, delta) {
       const m = leagueData.matches[i];
       m.scoreSet = true;
@@ -1246,6 +1320,15 @@
       const num = Math.min(20, Math.max(0, parseInt(val, 10) || 0));
       if (teamNum === 1) m.g1 = num;
       else m.g2 = num;
+      m.score = `${m.g1}:${m.g2}`;
+      renderAll();
+      renderAdmin();
+    };
+
+    window.setMatchFinishType = function(i, fType) {
+      const m = leagueData.matches[i];
+      m.finishType = fType;
+      m.scoreSet = true;
       m.score = `${m.g1}:${m.g2}`;
       renderAll();
       renderAdmin();
@@ -1283,6 +1366,7 @@
 
       const teamNames = leagueData.standings.map(t => t.team);
 
+      // Рендер удобных мобильных карточек матчей
       document.getElementById("admin-matches-box").innerHTML = leagueData.matches.map((m, i) => {
         normalizeMatchObject(m);
         const t1Opts = teamNames.map(n => `<option value="${n}" ${n === m.team1 ? 'selected' : ''}>${n}</option>`).join("");
@@ -1292,60 +1376,68 @@
         const autoNow = getEffectiveStatus(m);
 
         return `
-          <div class="admin-match-row">
-            <input type="date" class="admin-input" value="${m.dateISO}" onchange="onMatchDateChange(${i}, this.value)" title="Дата игры (${m.day})">
-            <input type="time" class="admin-input" value="${m.timeVal}" onchange="onMatchTimeChange(${i}, this.value)" title="Время МСК">
-            <select class="admin-input" onchange="onMatchStatusModeChange(${i}, this.value)" title="Режим отслеживания статуса">
-              <option value="AUTO" ${sMode === 'AUTO' ? 'selected' : ''}>⏱️ Авто (${autoNow})</option>
-              <option value="Скоро" ${sMode === 'Скоро' ? 'selected' : ''}>⏳ Скоро</option>
-              <option value="LIVE" ${sMode === 'LIVE' ? 'selected' : ''}>🔴 LIVE</option>
-              <option value="Завершен" ${sMode === 'Завершен' ? 'selected' : ''}>✅ Завершен</option>
-            </select>
-            <select class="admin-input" onchange="onMatchFieldChange(${i}, 'team1', this.value)">${t1Opts}</select>
-
-            <div class="score-stepper-box">
-              <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 1, -1)">–</button>
-              <select class="score-select" onchange="setTeamGoalExact(${i}, 1, this.value)">
-                ${buildGoalOptions(m.g1 || 0)}
+          <div class="admin-match-card">
+            <div class="amc-header">
+              <input type="date" class="admin-input" value="${m.dateISO}" onchange="onMatchDateChange(${i}, this.value)">
+              <input type="time" class="admin-input" value="${m.timeVal}" onchange="onMatchTimeChange(${i}, this.value)">
+              <select class="admin-input" onchange="onMatchStatusModeChange(${i}, this.value)">
+                <option value="AUTO" ${sMode === 'AUTO' ? 'selected' : ''}>⏱️ Авто (${autoNow})</option>
+                <option value="Скоро" ${sMode === 'Скоро' ? 'selected' : ''}>⏳ Скоро</option>
+                <option value="LIVE" ${sMode === 'LIVE' ? 'selected' : ''}>🔴 LIVE</option>
+                <option value="Завершен" ${sMode === 'Завершен' ? 'selected' : ''}>✅ Завершен</option>
               </select>
-              <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 1, 1)">+</button>
-
-              <span style="font-family:'Russo One',sans-serif; color:var(--red); padding:0 3px;">:</span>
-
-              <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 2, -1)">–</button>
-              <select class="score-select" onchange="setTeamGoalExact(${i}, 2, this.value)">
-                ${buildGoalOptions(m.g2 || 0)}
-              </select>
-              <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 2, 1)">+</button>
-
-              <button type="button" class="vs-reset-btn ${!m.scoreSet ? 'active' : ''}" onclick="resetMatchToVS(${i})" title="Сбросить счет на VS">VS</button>
+              <button type="button" class="btn-mini" style="color:#ff5c64; height:36px;" onclick="deleteMatchRow(${i})">🗑</button>
             </div>
 
-            <select class="admin-input" onchange="onMatchFieldChange(${i}, 'finishType', this.value)" title="Тип победы">
-              <option value="REG" ${fType === 'REG' ? 'selected' : ''}>Осн. время</option>
-              <option value="OT" ${fType === 'OT' ? 'selected' : ''}>В ОТ</option>
-              <option value="SO" ${fType === 'SO' ? 'selected' : ''}>Буллиты (Б)</option>
-            </select>
-            <select class="admin-input" onchange="onMatchFieldChange(${i}, 'team2', this.value)">${t2Opts}</select>
-            <button class="btn-mini" style="color:#ff5c64;" onclick="deleteMatchRow(${i})">✕</button>
+            <div class="amc-teams-score">
+              <select class="admin-input" style="font-weight:800;" onchange="onMatchFieldChange(${i}, 'team1', this.value)">${t1Opts}</select>
+              <div class="amc-stepper">
+                <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 1, -1)">–</button>
+                <select class="score-select" onchange="setTeamGoalExact(${i}, 1, this.value)">${buildGoalOptions(m.g1 || 0)}</select>
+                <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 1, 1)">+</button>
+              </div>
+            </div>
+
+            <div class="amc-teams-score">
+              <select class="admin-input" style="font-weight:800;" onchange="onMatchFieldChange(${i}, 'team2', this.value)">${t2Opts}</select>
+              <div class="amc-stepper">
+                <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 2, -1)">–</button>
+                <select class="score-select" onchange="setTeamGoalExact(${i}, 2, this.value)">${buildGoalOptions(m.g2 || 0)}</select>
+                <button type="button" class="step-btn" onclick="stepTeamGoal(${i}, 2, 1)">+</button>
+              </div>
+            </div>
+
+            <div class="amc-footer">
+              <div class="finish-pills">
+                <button type="button" class="finish-pill ${m.scoreSet && fType === 'REG' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'REG')">Осн. время</button>
+                <button type="button" class="finish-pill ${m.scoreSet && fType === 'OT' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'OT')">В ОТ</button>
+                <button type="button" class="finish-pill ${m.scoreSet && fType === 'SO' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'SO')">Буллиты</button>
+                <button type="button" class="finish-pill vs-pill ${!m.scoreSet ? 'active' : ''}" onclick="resetMatchToVS(${i})">VS (Сброс)</button>
+              </div>
+            </div>
           </div>
         `;
       }).join("");
 
+      // Рендер карточек клубов с подписанными полями
       document.getElementById("admin-teams-box").innerHTML = leagueData.standings.map((t, i) => `
-        <div class="admin-team-row">
-          <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:28px; height:28px; object-fit:contain;">
-          <input class="admin-input" value="${t.team}" onchange="leagueData.standings[${i}].team=this.value">
-          <label class="btn-mini">📁<input type="file" accept="image/*" style="display:none;" onchange="uploadTeamLogo(event, ${i})"></label>
-          <input class="admin-input" type="number" value="${t.gp}" onchange="leagueData.standings[${i}].gp=+this.value" title="Игры (И)">
-          <input class="admin-input" type="number" value="${t.w}" onchange="leagueData.standings[${i}].w=+this.value" title="Победы в осн. время (В)">
-          <input class="admin-input" type="number" value="${t.ot}" onchange="leagueData.standings[${i}].ot=+this.value" title="ВО/ВБ">
-          <input class="admin-input" type="number" value="${t.po || 0}" onchange="leagueData.standings[${i}].po=+this.value" title="ПО/ПБ">
-          <input class="admin-input" type="number" value="${t.l}" onchange="leagueData.standings[${i}].l=+this.value" title="Поражения (П)">
-          <input class="admin-input" type="number" value="${t.pts}" onchange="leagueData.standings[${i}].pts=+this.value" title="Очки" style="font-weight:800; border-color:var(--red);">
-          <input class="admin-input" type="number" value="${t.gf || 0}" onchange="leagueData.standings[${i}].gf=+this.value" title="Забитые шайбы (ЗШ)">
-          <input class="admin-input" type="number" value="${t.ga || 0}" onchange="leagueData.standings[${i}].ga=+this.value" title="Пропущенные шайбы (ПШ)">
-          <button class="btn-mini" onclick="leagueData.standings.splice(${i},1);renderAdmin();">✕</button>
+        <div class="admin-team-card">
+          <div class="atc-top">
+            <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:32px; height:32px; object-fit:contain;">
+            <input class="admin-input" style="flex:1; font-weight:800;" value="${t.team}" onchange="leagueData.standings[${i}].team=this.value;renderAll();">
+            <label class="btn-mini" style="height:36px;">📁 PNG<input type="file" accept="image/*" style="display:none;" onchange="uploadTeamLogo(event, ${i})"></label>
+            <button class="btn-mini" style="color:#ff5c64; height:36px;" onclick="leagueData.standings.splice(${i},1);renderAdmin();renderAll();">🗑</button>
+          </div>
+          <div class="atc-grid">
+            <div class="field-mini"><span>И</span><input class="admin-input" type="number" value="${t.gp}" onchange="leagueData.standings[${i}].gp=+this.value"></div>
+            <div class="field-mini"><span>В</span><input class="admin-input" type="number" value="${t.w}" onchange="leagueData.standings[${i}].w=+this.value"></div>
+            <div class="field-mini"><span>ВО/ВБ</span><input class="admin-input" type="number" value="${t.ot}" onchange="leagueData.standings[${i}].ot=+this.value"></div>
+            <div class="field-mini"><span>ПО/ПБ</span><input class="admin-input" type="number" value="${t.po || 0}" onchange="leagueData.standings[${i}].po=+this.value"></div>
+            <div class="field-mini"><span>П</span><input class="admin-input" type="number" value="${t.l}" onchange="leagueData.standings[${i}].l=+this.value"></div>
+            <div class="field-mini"><span>ЗШ</span><input class="admin-input" type="number" value="${t.gf || 0}" onchange="leagueData.standings[${i}].gf=+this.value"></div>
+            <div class="field-mini"><span>ПШ</span><input class="admin-input" type="number" value="${t.ga || 0}" onchange="leagueData.standings[${i}].ga=+this.value"></div>
+            <div class="field-mini"><span style="color:var(--red);">Очки</span><input class="admin-input" type="number" style="border-color:var(--red); color:#fff;" value="${t.pts}" onchange="leagueData.standings[${i}].pts=+this.value"></div>
+          </div>
         </div>
       `).join("");
 
@@ -1356,15 +1448,29 @@
       renderAdminRoster();
 
       document.getElementById("admin-leaders-box").innerHTML = leagueData.leaders.map((l, i) => `
-        <div class="admin-leader-row">
-          <input class="admin-input" value="${l.role}" onchange="leagueData.leaders[${i}].role=this.value" placeholder="Номинация">
-          <input class="admin-input" value="${l.player}" onchange="leagueData.leaders[${i}].player=this.value" placeholder="Ник игрока">
-          <input class="admin-input" value="${l.team}" onchange="leagueData.leaders[${i}].team=this.value" placeholder="Команда">
-          <input class="admin-input" value="${l.value}" onchange="leagueData.leaders[${i}].value=this.value" placeholder="Значение">
-          <button class="btn-mini" style="color:#ff5c64;" onclick="leagueData.leaders.splice(${i},1);renderAdmin();">✕</button>
+        <div class="admin-player-card">
+          <div style="display:grid; grid-template-columns:1fr auto; gap:6px;">
+            <input class="admin-input" value="${l.role}" onchange="leagueData.leaders[${i}].role=this.value;renderAll();" placeholder="Номинация">
+            <button class="btn-mini" style="color:#ff5c64;" onclick="leagueData.leaders.splice(${i},1);renderAdmin();renderAll();">🗑</button>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 80px; gap:6px;">
+            <input class="admin-input" value="${l.player}" onchange="leagueData.leaders[${i}].player=this.value;renderAll();" placeholder="Ник игрока">
+            <input class="admin-input" value="${l.team}" onchange="leagueData.leaders[${i}].team=this.value;renderAll();" placeholder="Команда">
+            <input class="admin-input" style="text-align:center; font-weight:800; border-color:var(--red);" value="${l.value}" onchange="leagueData.leaders[${i}].value=this.value;renderAll();" placeholder="Стата">
+          </div>
         </div>
       `).join("");
     }
+
+    window.onPlayerStatChange = function(tIdx, pIdx, field, val) {
+      const p = leagueData.standings[tIdx].players[pIdx];
+      p[field] = +val || 0;
+      if (field === "g" || field === "a") {
+        p.pts = (parseInt(p.g, 10) || 0) + (parseInt(p.a, 10) || 0);
+      }
+      renderAdminRoster();
+      renderAll();
+    };
 
     window.renderAdminRoster = function() {
       const tIdx = +document.getElementById("admin-roster-team-select").value || 0;
@@ -1374,24 +1480,28 @@
 
       const box = document.getElementById("admin-roster-players-box");
       if (!team.players.length) {
-        box.innerHTML = `<div style="padding:12px; color:var(--text-muted); font-size:12px; background:#0c0e13; border-radius:6px;">В составе «${team.team}» пока нет игроков. Нажми «+ Добавить игрока в состав».</div>`;
+        box.innerHTML = `<div style="padding:14px; color:var(--text-muted); font-size:12.5px; background:#0b0d13; border-radius:10px; text-align:center;">В составе «${team.team}» пока нет игроков. Нажми «+ Игрок».</div>`;
         return;
       }
       box.innerHTML = team.players.map((p, pIdx) => `
-        <div class="admin-player-row">
-          <input class="admin-input" value="${p.num || ''}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].num=this.value" placeholder="# Номер">
-          <input class="admin-input" value="${p.name || ''}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].name=this.value" placeholder="Игровой ник">
-          <select class="admin-input" onchange="leagueData.standings[${tIdx}].players[${pIdx}].pos=this.value">
-            <option value="Нападающий" ${p.pos === 'Нападающий' ? 'selected' : ''}>Нападающий</option>
-            <option value="Защитник" ${p.pos === 'Защитник' ? 'selected' : ''}>Защитник</option>
-            <option value="Вратарь" ${p.pos === 'Вратарь' ? 'selected' : ''}>Вратарь</option>
-            <option value="Капитан (К)" ${p.pos === 'Капитан (К)' ? 'selected' : ''}>Капитан (К)</option>
-          </select>
-          <input class="admin-input" type="number" value="${p.gp || 0}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].gp=+this.value" title="И">
-          <input class="admin-input" type="number" value="${p.g || 0}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].g=+this.value" title="Г">
-          <input class="admin-input" type="number" value="${p.a || 0}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].a=+this.value" title="П">
-          <input class="admin-input" type="number" value="${p.pts || 0}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].pts=+this.value" title="Очки">
-          <button class="btn-mini" style="color:#ff5c64;" onclick="leagueData.standings[${tIdx}].players.splice(${pIdx},1);renderAdminRoster();">✕</button>
+        <div class="admin-player-card">
+          <div class="apc-top">
+            <input class="admin-input" value="${p.num || ''}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].num=this.value;renderAll();" placeholder="#10">
+            <input class="admin-input" style="font-weight:700;" value="${p.name || ''}" onchange="leagueData.standings[${tIdx}].players[${pIdx}].name=this.value;renderAll();" placeholder="Ник игрока">
+            <select class="admin-input" onchange="leagueData.standings[${tIdx}].players[${pIdx}].pos=this.value;renderAll();">
+              <option value="Нападающий" ${p.pos === 'Нападающий' ? 'selected' : ''}>Нападающий</option>
+              <option value="Защитник" ${p.pos === 'Защитник' ? 'selected' : ''}>Защитник</option>
+              <option value="Вратарь" ${p.pos === 'Вратарь' ? 'selected' : ''}>Вратарь</option>
+              <option value="Капитан (К)" ${p.pos === 'Капитан (К)' ? 'selected' : ''}>Капитан (К)</option>
+            </select>
+            <button class="btn-mini" style="color:#ff5c64; height:36px;" onclick="leagueData.standings[${tIdx}].players.splice(${pIdx},1);renderAdminRoster();renderAll();">🗑</button>
+          </div>
+          <div class="apc-stats">
+            <div class="field-mini"><span>Игры</span><input class="admin-input" type="number" value="${p.gp || 0}" onchange="onPlayerStatChange(${tIdx}, ${pIdx}, 'gp', this.value)"></div>
+            <div class="field-mini"><span>Голы (Г)</span><input class="admin-input" type="number" value="${p.g || 0}" onchange="onPlayerStatChange(${tIdx}, ${pIdx}, 'g', this.value)"></div>
+            <div class="field-mini"><span>Пасы (П)</span><input class="admin-input" type="number" value="${p.a || 0}" onchange="onPlayerStatChange(${tIdx}, ${pIdx}, 'a', this.value)"></div>
+            <div class="field-mini"><span style="color:var(--red);">Очки (Г+П)</span><input class="admin-input" type="number" style="border-color:var(--red);" value="${p.pts || 0}" onchange="onPlayerStatChange(${tIdx}, ${pIdx}, 'pts', this.value)"></div>
+          </div>
         </div>
       `).join("");
     };
@@ -1403,11 +1513,13 @@
       if (!Array.isArray(team.players)) team.players = [];
       team.players.push({ num: "#10", name: "Игрок", pos: "Нападающий", gp: 0, g: 0, a: 0, pts: 0 });
       renderAdminRoster();
+      renderAll();
     };
 
     document.getElementById("admin-add-leader").onclick = () => {
       leagueData.leaders.push({ role: "Новая номинация", player: "Ник игрока", team: "Команда", value: "0" });
       renderAdmin();
+      renderAll();
     };
 
     document.getElementById("admin-add-match").onclick = () => {
@@ -1415,7 +1527,7 @@
       const t2 = leagueData.standings[1]?.team || "САЛАВАТ ЮЛАЕВ";
       const nowMsk = new Date(Date.now() + 3 * 3600 * 1000);
       const isoToday = nowMsk.toISOString().slice(0, 10);
-      leagueData.matches.push({
+      leagueData.matches.unshift({
         dateISO: isoToday,
         timeVal: "20:00",
         day: formatIsoToRusDay(isoToday),
@@ -1511,14 +1623,7 @@
 
     document.getElementById("close-admin-modal").onclick = () => document.getElementById("admin-modal").classList.remove("active");
 
-    // Автоматические часы МСК и фоновое обновление статусов матчей каждые 10 секунд
-    function tickMskClockAndStatuses() {
-      const mskNow = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
-      const hh = String(mskNow.getHours()).padStart(2, "0");
-      const mm = String(mskNow.getMinutes()).padStart(2, "0");
-      const statusEl = document.getElementById("cloud-status-text");
-      if (statusEl) statusEl.textContent = `МСК ${hh}:${mm} • AUTO`;
-
+    function tickAutoStatuses() {
       let changed = false;
       leagueData.matches.forEach(m => {
         const nextSt = getEffectiveStatus(m);
@@ -1528,11 +1633,12 @@
         }
       });
       if (changed) renderAll();
+      else updateSmartHeaderWidget();
     }
 
     renderAll();
-    tickMskClockAndStatuses();
-    setInterval(tickMskClockAndStatuses, 10000);
+    tickAutoStatuses();
+    setInterval(tickAutoStatuses, 10000);
     syncFromCloud();
   </script>
 </body>
