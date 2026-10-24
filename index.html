@@ -13,7 +13,7 @@
       --bg-main: #050608;
       --bg-surface: #0c0e12;
       --bg-elevated: #13161c;
-      --bg-glass: rgba(15, 18, 24, 0.78);
+      --bg-glass: rgba(15, 18, 24, 0.82);
       --white: #ffffff;
       --silver: #cbd5e1;
       --muted: #717a8b;
@@ -43,7 +43,7 @@
       font-family: 'Inter', sans-serif;
       line-height: 1.55;
       background-image:
-        radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.11) 0%, transparent 52%),
+        radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.12) 0%, transparent 52%),
         radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
       background-size: 100% 100%, 28px 28px;
       min-height: 100vh;
@@ -64,24 +64,22 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(1.3); }
     }
-    @keyframes spinSlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
 
-    /* ПАРЯЩАЯ ОСТРОВНАЯ ШАПКА (FLOATING ISLAND NAVBAR) */
+    /* ==========================================================================
+       ПАРЯЩАЯ ОСТРОВНАЯ ШАПКА
+       ========================================================================== */
     header {
       position: sticky;
-      top: 14px;
+      top: 12px;
       z-index: 1000;
-      padding: 0 18px;
-      margin-bottom: 10px;
+      padding: 0 16px;
+      margin-bottom: 8px;
     }
     .nav-container {
       max-width: 1220px;
       margin: 0 auto;
       padding: 8px 14px;
-      background: rgba(12, 14, 18, 0.84);
+      background: rgba(12, 14, 18, 0.86);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--border-hover);
@@ -89,13 +87,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+      gap: 10px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       text-decoration: none;
       color: var(--white);
       padding-left: 4px;
@@ -141,7 +139,7 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 12px;
-      padding: 7px 15px;
+      padding: 7px 14px;
       border-radius: var(--radius-pill);
       transition: all 0.25s var(--smooth);
     }
@@ -150,16 +148,16 @@
       background: var(--white);
     }
 
-    .header-right-actions { display: flex; align-items: center; gap: 8px; }
+    .header-right-actions { display: flex; align-items: center; gap: 7px; }
     .smart-match-pill {
       display: inline-flex;
       align-items: center;
       gap: 7px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--white);
-      padding: 7px 14px;
+      padding: 7px 12px;
       border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border);
@@ -181,35 +179,70 @@
       font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: var(--radius-pill);
-      background: var(--white);
-      color: #000;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-hover);
+      color: var(--white);
       text-decoration: none;
       transition: all 0.25s var(--smooth);
       flex-shrink: 0;
+      cursor: pointer;
     }
-    .stream-pill-btn:hover { transform: scale(1.04); box-shadow: 0 0 20px rgba(255,255,255,0.35); }
+    .stream-pill-btn:hover { background: var(--white); color: #000; }
     .stream-pill-btn svg { width: 13px; height: 13px; fill: currentColor; }
+
+    /* Кнопка аккаунта / входа в шапке */
+    .user-auth-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--white);
+      color: #000;
+      border: 1px solid var(--white);
+      cursor: pointer;
+      transition: all 0.25s var(--smooth);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .user-auth-pill:hover { transform: scale(1.03); box-shadow: 0 0 18px rgba(255, 255, 255, 0.35); }
+    .user-auth-pill.logged-in {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: var(--win);
+      color: var(--white);
+    }
+    .user-coins-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      color: var(--amber);
+    }
+
     .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--win); box-shadow: 0 0 8px var(--win); flex-shrink: 0; }
 
-    /* МОБИЛЬНЫЙ НИЖНИЙ ДОК (APPLE / iOS DOCK STYLE) */
+    /* МОБИЛЬНЫЙ НИЖНИЙ ДОК */
     .mobile-hud {
       display: none;
       position: fixed;
-      bottom: 14px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 410px;
+      width: calc(100% - 20px);
+      max-width: 420px;
       z-index: 1500;
-      background: rgba(12, 14, 18, 0.9);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: rgba(12, 14, 18, 0.92);
+      backdrop-filter: blur(26px);
+      -webkit-backdrop-filter: blur(26px);
       border: 1px solid var(--border-hover);
       border-radius: var(--radius-pill);
       padding: 5px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92);
       justify-content: space-between;
       gap: 4px;
     }
@@ -236,31 +269,39 @@
     }
 
     /* ==========================================================================
-       ГЛАВНЫЙ ЭКРАН В СТИЛЕ BENTO GRID DASHBOARD
+       ГЛАВНЫЙ ЭКРАН BENTO GRID + ТАЙМЕР ОБРАТНОГО ОТСЧЕТА
        ========================================================================== */
     .bento-hero {
       max-width: 1220px;
       margin: 0 auto;
-      padding: 24px 20px 18px;
+      padding: 20px 20px 14px;
       display: grid;
-      grid-template-columns: 1.55fr 0.95fr;
+      grid-template-columns: 1.45fr 1fr;
       grid-template-rows: auto auto;
       gap: 16px;
       animation: fadeUp 0.55s var(--smooth) both;
     }
     .bento-main {
       grid-row: 1 / 3;
-      background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.12) 0%, rgba(18,21,28,0.92) 60%);
+      background: radial-gradient(circle at 90% 15%, rgba(255,255,255,0.13) 0%, rgba(16,19,26,0.95) 62%);
       border: 1px solid var(--border-hover);
       border-radius: var(--radius-xl);
-      padding: 38px 36px;
+      padding: 36px 34px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
     }
-    .bento-tag-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .bento-main-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .bento-tag-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .pill-tag {
       display: inline-flex;
       align-items: center;
@@ -279,14 +320,24 @@
       color: var(--silver);
       border: 1px solid var(--border-hover);
     }
+    .hero-emblem-float {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      border: 3px solid var(--white);
+      box-shadow: 0 8px 28px rgba(255, 255, 255, 0.25);
+      flex-shrink: 0;
+    }
     .bento-main h1 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(28px, 4.2vw, 48px);
+      font-size: clamp(26px, 4vw, 46px);
       font-weight: 900;
       line-height: 1.06;
       letter-spacing: -1px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .bento-main h1 .silver-grad {
       background: linear-gradient(90deg, #ffffff 0%, #7d899c 100%);
@@ -297,14 +348,14 @@
       color: var(--silver);
       font-size: 14.5px;
       max-width: 540px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       opacity: 0.88;
     }
     .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
-      padding: 13px 24px;
+      padding: 13px 22px;
       font-family: 'Unbounded', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       text-decoration: none;
@@ -329,65 +380,170 @@
     }
     .btn-outline:hover { background: rgba(255, 255, 255, 0.14); border-color: var(--white); transform: translateY(-2px); }
 
-    /* Правая верхняя карточка Bento — Витрина логотипа */
-    .bento-logo-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
+    .bento-countdown-card {
+      background: linear-gradient(145deg, #11151d 0%, #0b0d12 100%);
+      border: 1px solid var(--border-hover);
       border-radius: var(--radius-xl);
-      padding: 24px;
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s var(--smooth), border-color 0.25s;
+    }
+    .bento-countdown-card:hover { transform: translateY(-2px); border-color: var(--white); }
+    .cd-top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      position: relative;
-      overflow: hidden;
+      gap: 8px;
     }
-    .bento-logo-card img {
-      width: 118px;
-      height: 118px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #fff;
-      border: 3px solid var(--white);
-      box-shadow: 0 10px 35px rgba(255, 255, 255, 0.22);
-      flex-shrink: 0;
+    .cd-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--amber);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .bento-logo-info h3 {
+    .cd-match-teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+    }
+    .cd-team {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'Unbounded', sans-serif;
-      font-size: 16px;
-      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 800;
     }
-    .bento-logo-info p { font-size: 12.5px; color: var(--muted); }
+    .cd-team img { width: 28px; height: 28px; object-fit: contain; }
+    .cd-vs {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.05);
+    }
+    .cd-digits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .cd-unit {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .cd-unit strong {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .cd-unit span {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
 
-    /* Правая нижняя карточка Bento — Параметры сезона BO3 */
     .bento-stats-card {
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
-      padding: 20px 24px;
+      padding: 18px 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
     .mini-metric {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 12px;
+      padding: 12px 8px;
       text-align: center;
     }
     .mini-metric strong {
       display: block;
       font-family: 'Unbounded', sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       color: var(--white);
     }
     .mini-metric span {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--muted);
       text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       АВТОМАТИЧЕСКИЙ ПЛЕЕР TWITCH ПРИ СТАТУСЕ LIVE
+       ========================================================================== */
+    .live-twitch-wrap {
+      max-width: 1220px;
+      margin: 6px auto 0;
+      padding: 0 20px;
+      display: none;
+      animation: fadeUp 0.4s var(--smooth) both;
+    }
+    .live-twitch-wrap.active { display: block; }
+    .live-twitch-card {
+      background: linear-gradient(180deg, rgba(255, 42, 75, 0.14) 0%, var(--bg-surface) 100%);
+      border: 1px solid var(--live);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(255, 42, 75, 0.18);
+    }
+    .live-twitch-bar {
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .live-twitch-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .live-iframe-box {
+      position: relative;
+      width: 100%;
+      padding-top: 42%;
+      background: #000;
+    }
+    .live-iframe-box.collapsed { display: none; }
+    .live-iframe-box iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     /* ==========================================================================
@@ -421,7 +577,7 @@
       text-transform: uppercase;
       letter-spacing: -0.4px;
     }
-    .section-subhint { font-size: 12.5px; color: var(--muted); font-weight: 500; }
+    .section-subhint { font-size: 12.5px; color: var(--muted); font-weight: 500; display: block; margin-top: 3px; }
 
     .calendar-toggle-btn {
       display: inline-flex;
@@ -483,7 +639,7 @@
     .cal-btn.active { background: var(--white); border-color: var(--white); color: #000; }
 
     /* ==========================================================================
-       КАРТОЧКИ МАТЧЕЙ В СТИЛЕ ТВ-СКОРБОРДА (BROADCAST SCOREBUG)
+       КАРТОЧКИ МАТЧЕЙ + СТАВКИ (ТОЛЬКО ДЛЯ ЗАРЕГИСТРИРОВАННЫХ АККАУНТОВ)
        ========================================================================== */
     .matches-grid {
       display: grid;
@@ -497,7 +653,8 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
+      cursor: pointer;
       transition: all 0.3s var(--smooth);
       animation: fadeUp 0.35s var(--smooth) both;
     }
@@ -528,15 +685,6 @@
       border-radius: var(--radius-pill);
       color: var(--silver);
     }
-    .match-bo3-tag {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
-      font-weight: 800;
-      background: var(--white);
-      color: #000;
-      padding: 3px 8px;
-      border-radius: var(--radius-pill);
-    }
     .match-status {
       font-family: 'JetBrains Mono', monospace;
       color: var(--amber);
@@ -555,12 +703,7 @@
     .match-status.done { color: var(--win); }
     .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulseLive 1.1s infinite; }
 
-    /* Две горизонтальные строки команд как в трансляции */
-    .scorebug-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .scorebug-rows { display: flex; flex-direction: column; gap: 6px; }
     .scorebug-team-row {
       display: flex;
       align-items: center;
@@ -600,6 +743,60 @@
       color: #000;
     }
 
+    .pickem-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pickem-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+    .pickem-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--silver);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pickem-btn:hover, .pickem-btn.voted {
+      background: var(--white);
+      color: #000;
+      border-color: var(--white);
+    }
+    .pickem-bar-track {
+      height: 5px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      display: flex;
+    }
+    .pickem-bar-fill-1 {
+      height: 100%;
+      background: var(--white);
+      transition: width 0.35s var(--smooth);
+    }
+    .pickem-bar-fill-2 {
+      height: 100%;
+      background: #475569;
+      transition: width 0.35s var(--smooth);
+    }
+
     .bo3-games-strip {
       display: flex;
       align-items: center;
@@ -611,7 +808,7 @@
       font-size: 11px;
       color: var(--muted);
     }
-    .bo3-pills-wrap { display: flex; gap: 5px; flex-wrap: wrap; }
+    .bo3-pills-wrap { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
     .bo3-game-pill {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
@@ -630,7 +827,7 @@
     }
 
     /* ==========================================================================
-       ТУРНИРНАЯ ТАБЛИЦА (DASHBOARD TABLE)
+       ТУРНИРНАЯ ТАБЛИЦА
        ========================================================================== */
     .season-info-bar {
       display: flex;
@@ -673,7 +870,6 @@
     }
     tbody tr { cursor: pointer; }
     tbody tr:hover td { background: var(--bg-elevated); }
-    /* Визуальная линия зоны плей-офф после 8-го места */
     tbody tr.playoff-cutoff td {
       border-bottom: 2px dashed rgba(255, 255, 255, 0.35);
     }
@@ -697,7 +893,7 @@
     .team-cell {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
       text-transform: uppercase;
       white-space: nowrap;
       font-weight: 800;
@@ -725,7 +921,7 @@
     }
 
     /* ==========================================================================
-       НОВОСТИ ЛИГИ (MAGAZINE / EDITORIAL CARDS)
+       НОВОСТИ ЛИГИ
        ========================================================================== */
     .news-filter-bar { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-bottom: 18px; }
     .news-filter-bar::-webkit-scrollbar { display: none; }
@@ -806,33 +1002,38 @@
     }
 
     /* ==========================================================================
-       ЛИДЕРЫ СЕЗОНА & РЕГЛАМЕНТ
+       ЛИДЕРЫ СЕЗОНА
        ========================================================================== */
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
     .stat-card {
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       transition: all 0.25s var(--smooth);
     }
     .stat-card:hover { border-color: var(--white); transform: translateY(-3px); }
-    .stat-role { font-size: 10.5px; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
-    .stat-player { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 800; margin: 5px 0 3px; color: var(--white); }
-    .stat-team { font-size: 12px; color: var(--silver); }
+    .stat-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .stat-club-logo { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
+    .stat-role { font-size: 10px; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: 0.7px; }
+    .stat-player { font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 800; margin: 3px 0 2px; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .stat-team { font-size: 11.5px; color: var(--silver); }
     .stat-value {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 800;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border-hover);
-      padding: 8px 14px;
+      padding: 7px 13px;
       border-radius: var(--radius-md);
+      flex-shrink: 0;
     }
 
+    /* РЕГЛАМЕНТ */
     .rules-layout { display: grid; grid-template-columns: 260px 1fr; gap: 18px; align-items: start; }
     .rules-nav { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
     .rules-toc { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
@@ -873,7 +1074,9 @@
     .creator-credit span { font-family: 'Unbounded', sans-serif; font-weight: 800; color: var(--white); }
     .creator-credit:hover { border-color: var(--white); color: var(--white); }
 
-    /* МОДАЛЬНЫЕ ОКНА И ТЕХ. ПАНЕЛЬ */
+    /* ==========================================================================
+       МОДАЛЬНЫЕ ОКНА (АВТОРИЗАЦИЯ, MATCH CENTER, КЛУБ, НОВОСТЬ, ТЕХ. ПАНЕЛЬ)
+       ========================================================================== */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(3, 4, 6, 0.86);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -901,13 +1104,108 @@
     .admin-scroll-body { padding: 16px 18px; overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; }
     .admin-sticky-footer { padding: 12px 18px; background: #08090c; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-shrink: 0; z-index: 10; }
 
+    /* Форма авторизации и регистрации пользователей */
+    .auth-alert-banner {
+      display: none;
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid var(--amber);
+      color: #fde68a;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .auth-alert-banner.visible { display: block; }
+    .auth-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .auth-form-group label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--silver);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .user-profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Match Center */
+    .mc-scoreboard {
+      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1) 0%, #080a0e 80%);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .mc-team {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .mc-team img { width: 58px; height: 58px; object-fit: contain; }
+    .mc-team strong { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 800; }
+    .mc-score-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .mc-big-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 34px;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border-hover);
+    }
+    .mc-block {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .mc-block-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Элементы Тех. Панели */
     .admin-settings-drawer { display: none; background: #08090c; border: 1px solid var(--border-hover); border-radius: var(--radius-md); padding: 12px; margin-bottom: 12px; gap: 10px; flex-direction: column; }
     .admin-settings-drawer.open { display: flex; }
 
     .admin-tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
     .admin-tabs::-webkit-scrollbar { display: none; }
     .admin-tab {
-      padding: 9px 14px; background: var(--bg-elevated); border: 1px solid var(--border);
+      padding: 9px 13px; background: var(--bg-elevated); border: 1px solid var(--border);
       color: var(--muted); border-radius: var(--radius-pill); font-size: 11.5px; font-weight: 800;
       white-space: nowrap; cursor: pointer; transition: 0.2s; flex: 1; text-align: center;
     }
@@ -938,6 +1236,16 @@
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
       background: rgba(255,255,255,0.02); padding: 8px; border-radius: 10px; border: 1px dashed var(--border);
     }
+    .amc-quick-stats-drawer {
+      display: none;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-hover);
+      border-radius: 10px;
+      padding: 10px;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .amc-quick-stats-drawer.open { display: flex; }
     .amc-footer { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
     .finish-pills { display: flex; gap: 5px; flex: 1; flex-wrap: wrap; }
     .finish-pill {
@@ -959,37 +1267,73 @@
     .apc-top { display: grid; grid-template-columns: 65px 1fr 130px auto; gap: 6px; align-items: center; }
     .apc-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 
-    .admin-input { width: 100%; height: 36px; padding: 6px 10px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-size: 13px; font-family: inherit; }
-    .admin-textarea { width: 100%; min-height: 76px; padding: 8px 10px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-size: 13px; font-family: inherit; resize: vertical; }
+    .admin-input { width: 100%; height: 38px; padding: 6px 12px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 13px; font-family: inherit; outline: none; }
+    .admin-input:focus { border-color: var(--white); }
+    .admin-textarea { width: 100%; min-height: 76px; padding: 8px 10px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; color: #fff; font-size: 13px; font-family: inherit; resize: vertical; }
     .btn-mini { padding: 8px 14px; background: var(--bg-elevated); border: 1px solid var(--border-hover); border-radius: var(--radius-pill); color: #fff; font-size: 11.5px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; transition: 0.2s; }
     .btn-mini:hover { background: var(--white); color: #000; }
 
+    /* ==========================================================================
+       ПРЕМИАЛЬНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
+       ========================================================================== */
     @media (max-width: 920px) {
-      .bento-hero { grid-template-columns: 1fr; }
-      .bento-main { grid-row: auto; padding: 26px 22px; }
+      .bento-hero { grid-template-columns: 1fr; gap: 12px; }
+      .bento-main { grid-row: auto; padding: 24px 20px; }
       .rules-layout { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       header { top: 8px; padding: 0 10px; }
+      .nav-container { padding: 7px 10px; }
       nav.desktop-nav { display: none; }
       .mobile-hud { display: flex; }
-      .brand img { width: 34px; height: 34px; }
-      .brand-title { font-size: 15px; }
+      .brand img { width: 32px; height: 32px; }
+      .brand-title { font-size: 14px; }
       .brand-sub { display: none; }
-      .smart-match-pill { font-size: 10.5px; padding: 6px 10px; }
+      .smart-match-pill { font-size: 10px; padding: 5px 8px; }
       .stream-pill-btn span { display: none; }
-      .stream-pill-btn { padding: 7px 10px; }
+      .stream-pill-btn { padding: 7px 9px; }
+      .user-auth-pill { font-size: 10.5px; padding: 6px 10px; }
+      .user-coins-tag { display: none; }
 
-      .bento-logo-card { flex-direction: column; text-align: center; }
+      .bento-hero { padding: 12px 12px 8px; gap: 10px; }
+      .bento-main {
+        padding: 20px 18px;
+        border-radius: 22px;
+        background: radial-gradient(circle at 95% 10%, rgba(255,255,255,0.16) 0%, rgba(15,18,25,0.96) 65%);
+      }
+      .hero-emblem-float { width: 58px; height: 58px; }
+      .bento-main h1 { font-size: 24px; margin-bottom: 8px; }
+      .bento-main p { font-size: 13px; margin-bottom: 16px; line-height: 1.45; }
       .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
       .btn-group .btn:first-child { grid-column: 1 / -1; }
-      .section { padding: 22px 14px; }
+      .btn { padding: 11px 14px; font-size: 10.5px; }
+
+      .bento-countdown-card { padding: 16px; border-radius: 20px; gap: 10px; }
+      .cd-unit strong { font-size: 17px; }
+      .bento-stats-card { padding: 12px; border-radius: 20px; gap: 8px; }
+      .mini-metric { padding: 10px 4px; }
+      .mini-metric strong { font-size: 15px; }
+      .mini-metric span { font-size: 9px; }
+
+      .live-iframe-box { padding-top: 56.25%; }
+
+      .section { padding: 20px 12px; }
       .section-header h2 { font-size: 18px; }
       .calendar-toggle-btn { width: 100%; justify-content: center; }
 
-      .modal-overlay { padding: 12px; align-items: center; justify-content: center; }
-      .modal-card { max-height: 86vh; height: auto; }
+      th, td { padding: 10px 9px; font-size: 12px; }
+      .team-avatar { width: 24px; height: 24px; }
+      .team-cell { gap: 7px; font-size: 12px; }
+      .roster-badge { display: none; }
+      .rank-badge { width: 22px; height: 22px; font-size: 10.5px; }
+      .pts { font-size: 13.5px; }
+
+      .modal-overlay { padding: 10px; align-items: center; justify-content: center; }
+      .modal-card { max-height: 86vh; height: auto; border-radius: 22px; }
       #admin-modal .modal-card { height: 90vh; max-height: 90vh; }
+      .mc-big-score { font-size: 24px; padding: 5px 12px; }
+      .mc-team img { width: 44px; height: 44px; }
+      .mc-team strong { font-size: 11px; }
       .amc-header { grid-template-columns: 1fr 1fr; }
       .atc-grid { grid-template-columns: repeat(4, 1fr); }
       .apc-top { grid-template-columns: 60px 1fr auto; }
@@ -1010,7 +1354,7 @@
         </div>
       </a>
       <nav class="desktop-nav">
-        <a href="#matches">Серии BO3</a>
+        <a href="#matches">Матчи</a>
         <a href="#standings">Таблица</a>
         <a href="#news">Новости</a>
         <a href="#leaders">Лидеры</a>
@@ -1019,12 +1363,15 @@
       <div class="header-right-actions">
         <a href="#matches" id="smart-header-pill" class="smart-match-pill" title="Перейти к расписанию">
           <span class="sync-dot" id="smart-header-dot"></span>
-          <span id="smart-header-text">FTCL BO3</span>
+          <span id="smart-header-text">FTCL</span>
         </a>
-        <a href="https://twitch.tv/ftclstream" target="_blank" rel="noopener noreferrer" class="stream-pill-btn" title="Прямой эфир на Twitch">
+        <button type="button" class="stream-pill-btn" onclick="toggleManualTwitchPlayer()" title="Прямой эфир на Twitch">
           <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-          <span>Twitch</span>
-        </a>
+          <span>Эфир</span>
+        </button>
+        <button type="button" id="header-user-btn" class="user-auth-pill" onclick="openAuthModal()">
+          <span id="header-user-text">👤 Войти</span>
+        </button>
       </div>
     </div>
   </header>
@@ -1033,7 +1380,7 @@
   <nav class="mobile-hud" aria-label="Навигация">
     <a href="#matches" class="hud-item active" data-target="matches">
       <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
-      <span>Серии</span>
+      <span>Матчи</span>
     </a>
     <a href="#standings" class="hud-item" data-target="standings">
       <svg viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/></svg>
@@ -1053,55 +1400,91 @@
     </a>
   </nav>
 
-  <!-- BENTO HERO ДАШБОРД -->
+  <!-- BENTO HERO ДАШБОРД С ЖИВЫМ ТАЙМЕРОМ ДО СЛЕДУЮЩЕЙ СЕРИИ -->
   <section class="bento-hero">
     <div class="bento-main">
       <div>
-        <div class="bento-tag-row">
-          <span class="pill-tag">Сезон 2026</span>
-          <span class="pill-tag outline">Регулярный чемпионат • BO3</span>
+        <div class="bento-main-top">
+          <div class="bento-tag-row">
+            <span class="pill-tag">Сезон 2026</span>
+            <span class="pill-tag outline">Регулярный чемпионат</span>
+          </div>
+          <img id="hero-logo-img" class="hero-emblem-float" alt="FTCL Emblem">
         </div>
         <h1>FUTURE PUCK<br><span class="silver-grad">CLINE LEAGUE</span></h1>
-        <p>Полноценный регулярный сезон FTCL. Все противостояния проходят в формате серий <strong>BO3 (до двух побед)</strong>. Следи за эфирным табло серий, положением клубов и статистикой игроков.</p>
+        <p>Официальный регулярный сезон киберхоккейной лиги FTCL. Десять клубов, протоколы игр, ставки для зарегистрированных участников и живая статистика чемпионата.</p>
       </div>
       <div class="btn-group">
-        <a href="#matches" class="btn btn-primary">Расписание BO3</a>
+        <a href="#matches" class="btn btn-primary">Расписание игр</a>
         <a href="#standings" class="btn btn-outline">Таблица клубов</a>
-        <a href="#rules" class="btn btn-outline">Регламент</a>
+        <button type="button" class="btn btn-outline" onclick="openAuthModal()">Личный кабинет</button>
       </div>
     </div>
 
-    <div class="bento-logo-card">
-      <img id="hero-logo-img" alt="FTCL Emblem">
-      <div class="bento-logo-info">
-        <span class="section-eyebrow">OFFICIAL LEAGUE</span>
-        <h3>FTCL • СЕЗОН 2026</h3>
-        <p>Новое поколение киберхоккейной лиги Puck. Серии до двух побед без компромиссов.</p>
+    <div class="bento-countdown-card" id="bento-countdown-card" onclick="document.getElementById('matches').scrollIntoView({behavior:'smooth'})">
+      <div class="cd-top-bar">
+        <span class="cd-badge" id="cd-status-label">⏳ ДО БЛИЖАЙШЕЙ ИГРЫ</span>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--silver);" id="cd-match-datetime">--</span>
+      </div>
+      <div class="cd-match-teams" id="cd-match-teams-box">
+        <div class="cd-team">
+          <img id="cd-t1-logo" alt="">
+          <span id="cd-t1-name">КЛУБ 1</span>
+        </div>
+        <span class="cd-vs" id="cd-vs-pill">VS</span>
+        <div class="cd-team">
+          <span id="cd-t2-name">КЛУБ 2</span>
+          <img id="cd-t2-logo" alt="">
+        </div>
+      </div>
+      <div class="cd-digits-grid" id="cd-digits-grid">
+        <div class="cd-unit"><strong id="cd-d">00</strong><span>Дней</span></div>
+        <div class="cd-unit"><strong id="cd-h">00</strong><span>Часов</span></div>
+        <div class="cd-unit"><strong id="cd-m">00</strong><span>Минут</span></div>
+        <div class="cd-unit"><strong id="cd-s">00</strong><span>Секунд</span></div>
       </div>
     </div>
 
     <div class="bento-stats-card">
       <div class="mini-metric">
-        <strong>10</strong>
+        <strong id="hero-metric-clubs">10</strong>
         <span>Клубов лиги</span>
       </div>
       <div class="mini-metric">
-        <strong>BO3</strong>
-        <span>До 2 побед</span>
+        <strong id="hero-metric-played">0</strong>
+        <span>Сыграно встреч</span>
       </div>
       <div class="mini-metric">
-        <strong>3+1</strong>
-        <span>Формат на льду</span>
+        <strong id="hero-metric-users">0</strong>
+        <span>Игроков на сайте</span>
       </div>
     </div>
   </section>
 
-  <!-- КАЛЕНДАРЬ СЕРИЙ BO3 -->
+  <!-- АВТОМАТИЧЕСКИЙ ПЛЕЕР TWITCH -->
+  <div class="live-twitch-wrap" id="live-twitch-wrap">
+    <div class="live-twitch-card">
+      <div class="live-twitch-bar">
+        <div class="live-twitch-title">
+          <span class="live-dot"></span>
+          <span id="live-twitch-label">ПРЯМАЯ ТРАНСЛЯЦИЯ FTCL (TWITCH)</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <a href="https://twitch.tv/ftclstream" target="_blank" rel="noopener noreferrer" class="btn-mini">Открыть на Twitch ↗</a>
+          <button type="button" class="btn-mini" onclick="toggleTwitchBodyCollapse()" id="toggle-twitch-collapse-btn">Свернуть плеер ▲</button>
+        </div>
+      </div>
+      <div class="live-iframe-box" id="live-iframe-box"></div>
+    </div>
+  </div>
+
+  <!-- КАЛЕНДАРЬ И РЕЗУЛЬТАТЫ МАТЧЕЙ -->
   <section id="matches" class="section">
     <div class="section-header">
       <div>
-        <span class="section-eyebrow">MATCH CENTER • BO3 SERIES</span>
-        <h2>Расписание и результаты серий</h2>
+        <span class="section-eyebrow">MATCH CENTER</span>
+        <h2>Расписание и результаты матчей</h2>
+        <span class="section-subhint">Серии проводятся в формате BO3 (до двух побед) • Чтобы сделать ставку на матч, войдите в свой аккаунт</span>
       </div>
       <button type="button" class="calendar-toggle-btn" id="toggle-calendar-btn" onclick="toggleCalendarSection()">
         <span id="toggle-calendar-text">Свернуть расписание ▲</span>
@@ -1109,7 +1492,7 @@
     </div>
 
     <div class="calendar-collapsed-banner" id="calendar-collapsed-banner" onclick="toggleCalendarSection()">
-      <span>📅 Расписание серий свернуто (<strong id="collapsed-matches-count" style="color:#fff;">0</strong> противостояний)</span>
+      <span>📅 Расписание свернуто (<strong id="collapsed-matches-count" style="color:#fff;">0</strong> игр)</span>
       <strong style="color:#fff;">Развернуть ▼</strong>
     </div>
 
@@ -1117,7 +1500,7 @@
       <div class="calendar-controls">
         <div class="calendar-days" id="calendar-days-bar"></div>
         <div class="calendar-status-filter" id="calendar-status-bar">
-          <button class="cal-btn active" onclick="setStatusFilter('ALL')">Все серии</button>
+          <button class="cal-btn active" onclick="setStatusFilter('ALL')">Все матчи</button>
           <button class="cal-btn" onclick="setStatusFilter('UPCOMING')">Ближайшие</button>
           <button class="cal-btn" onclick="setStatusFilter('DONE')">Завершенные</button>
         </div>
@@ -1132,8 +1515,8 @@
       <div>
         <span class="section-eyebrow">REGULAR SEASON STANDINGS</span>
         <h2>Турнирная таблица</h2>
+        <span class="section-subhint">Нажми на строку клуба, чтобы открыть его состав и статистику игроков</span>
       </div>
-      <span class="section-subhint">Нажми на строку клуба, чтобы открыть его состав и статистику игроков</span>
     </div>
     <div class="season-info-bar">
       <div><strong>Очки:</strong> Победа (2:0 / 2:1 / ТП) = 2 очка • Поражение (1:2 / ОТ / Б) = 1 очко • Поражение (0:2) = 0 очков</div>
@@ -1143,7 +1526,7 @@
       <table>
         <thead>
           <tr>
-            <th>Место</th>
+            <th>#</th>
             <th>Клуб</th>
             <th>И</th>
             <th>В</th>
@@ -1165,8 +1548,8 @@
       <div>
         <span class="section-eyebrow">MEDIA & HIGHLIGHTS</span>
         <h2>Новости и события FTCL</h2>
+        <span class="section-subhint">Обзоры игровых дней, анонсы и решения администрации</span>
       </div>
-      <span class="section-subhint">Обзоры игровых дней, анонсы серий и решения администрации</span>
     </div>
     <div class="news-filter-bar" id="news-filter-bar"></div>
     <div class="news-grid" id="news-container"></div>
@@ -1176,10 +1559,10 @@
   <section id="leaders" class="section">
     <div class="section-header">
       <div>
-        <span class="section-eyebrow">TOP PERFORMERS</span>
+        <span class="section-eyebrow">TOP PERFORMERS • AUTO-SYNC</span>
         <h2>Лидеры чемпионата</h2>
+        <span class="section-subhint">Рассчитывается автоматически по голам и передачам игроков из составов команд</span>
       </div>
-      <span class="section-subhint">Лучшие игроки регулярного сезона по ключевым показателям</span>
     </div>
     <div id="leaders-container" class="stats-grid"></div>
   </section>
@@ -1190,8 +1573,8 @@
       <div>
         <span class="section-eyebrow">OFFICIAL RULEBOOK 2026</span>
         <h2>Регламент лиги FTCL</h2>
+        <span class="section-subhint">Серии BO3 (до 2 побед) • Формат 3+1 • Заявка 6–10 игроков</span>
       </div>
-      <span class="section-subhint">Серии BO3 (до 2 побед) • Формат 3+1 • Заявка 6–10 игроков</span>
     </div>
     <div class="rules-layout">
       <aside class="rules-nav">
@@ -1221,9 +1604,77 @@
         <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.38a6.33 6.33 0 0 0-.85-.06A6.34 6.34 0 0 0 3.14 15.66a6.34 6.34 0 0 0 10.82 4.48 6.29 6.29 0 0 0 1.86-4.47V8.71a8.18 8.18 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.14z"/></svg>
       </a>
     </div>
-    <p id="secret-admin-trigger">© 2026 FTCL — Future Puck Cline League. Регулярный сезон • Серии BO3.</p>
+    <p id="secret-admin-trigger">© 2026 FTCL — Future Puck Cline League. Регулярный сезон.</p>
     <div class="creator-credit">Created by <span>ZEloteS</span></div>
   </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ / РЕГИСТРАЦИИ / ЛИЧНОГО КАБИНЕТА -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card" style="max-width:480px;">
+      <div class="admin-sticky-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <strong style="font-family:'Unbounded',sans-serif; font-size:14px; color:#fff;" id="auth-modal-title">👤 Аккаунт FTCL</strong>
+        <button class="modal-close" id="close-auth-modal">&times;</button>
+      </div>
+      <div class="admin-scroll-body">
+        <div id="auth-alert-banner" class="auth-alert-banner"></div>
+
+        <!-- Блок для гостей (Вход / Регистрация) -->
+        <div id="auth-guest-view">
+          <div class="admin-tabs" style="margin-bottom:16px;">
+            <button type="button" class="admin-tab active" id="tab-btn-login" onclick="switchAuthMode('login')">🔑 Вход в аккаунт</button>
+            <button type="button" class="admin-tab" id="tab-btn-register" onclick="switchAuthMode('register')">✨ Регистрация</button>
+          </div>
+
+          <!-- Форма Входа -->
+          <div id="auth-login-pane">
+            <div class="auth-form-group">
+              <label>Игровой никнейм (Логин)</label>
+              <input type="text" id="login-username" class="admin-input" placeholder="Введи свой никнейм">
+            </div>
+            <div class="auth-form-group">
+              <label>Пароль</label>
+              <input type="password" id="login-password" class="admin-input" placeholder="Введи пароль">
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%; margin-top:4px;" onclick="handleUserLogin()">Войти в аккаунт</button>
+          </div>
+
+          <!-- Форма Регистрации -->
+          <div id="auth-register-pane" style="display:none;">
+            <div class="auth-form-group">
+              <label>Придумай никнейм (от 3 символов)</label>
+              <input type="text" id="reg-username" class="admin-input" placeholder="Например: HokkeyPro99">
+            </div>
+            <div class="auth-form-group">
+              <label>Придумай пароль (от 4 символов)</label>
+              <input type="password" id="reg-password" class="admin-input" placeholder="Минимум 4 символа">
+            </div>
+            <div class="auth-form-group">
+              <label>Любимый клуб FTCL</label>
+              <select id="reg-fav-team" class="admin-input"></select>
+            </div>
+            <div style="font-size:11.5px; color:var(--muted); margin-bottom:12px;">
+              🎁 При регистрации тебе автоматически начисляется стартовый бонус <strong style="color:var(--amber);">500 FTCL Coins</strong> для ставок на матчи лиги!
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%;" onclick="handleUserRegister()">Зарегистрироваться (+500 Coins)</button>
+          </div>
+        </div>
+
+        <!-- Блок Личного кабинета (когда пользователь вошел) -->
+        <div id="auth-profile-view" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО СЕРИИ (MATCH CENTER / ПРОТОКОЛ И H2H) -->
+  <div class="modal-overlay" id="match-center-modal">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="admin-sticky-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <strong style="font-family:'Unbounded',sans-serif; font-size:13.5px; color:#fff;" id="mc-modal-title">Центр матча</strong>
+        <button class="modal-close" id="close-mc-modal">&times;</button>
+      </div>
+      <div class="admin-scroll-body" id="mc-modal-body"></div>
+    </div>
+  </div>
 
   <!-- МОДАЛЬНОЕ ОКНО СОСТАВА КОМАНДЫ -->
   <div class="modal-overlay" id="team-modal">
@@ -1247,12 +1698,12 @@
     </div>
   </div>
 
-  <!-- ТЕХ. ПАНЕЛЬ АДМИНА -->
+  <!-- ТЕХ. ПАНЕЛЬ АДМИНА (С БАЗОЙ ВСЕХ ЗАРЕГИСТРИРОВАННЫХ АККАУНТОВ) -->
   <div class="modal-overlay" id="admin-modal">
     <div class="modal-card">
       <div class="admin-sticky-header">
         <div class="admin-top-bar">
-          <div class="admin-title">⚙️ Тех. Панель FTCL (BO3 Сезон)</div>
+          <div class="admin-title">⚙️ Тех. Панель FTCL</div>
           <div style="display:flex; gap:6px; align-items:center;">
             <button type="button" class="btn-mini" onclick="document.getElementById('admin-settings-drawer').classList.toggle('open')">
               ⚙️ База и лого
@@ -1268,7 +1719,7 @@
               🖼️ Загрузить лого с устройства
               <input type="file" id="upload-site-logo" accept="image/*" style="display:none;">
             </label>
-            <button type="button" class="btn-mini" onclick="leagueData.siteLogo='';applySiteAvatar();">Сбросить на новый лого FTCL</button>
+            <button type="button" class="btn-mini" onclick="leagueData.siteLogo='';applySiteAvatar();">Сбросить на лого FTCL</button>
             <input id="admin-site-logo-url" class="admin-input" style="flex:1; min-width:130px;" placeholder="URL или logo.jpg">
           </div>
           <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
@@ -1278,10 +1729,11 @@
         </div>
 
         <div class="admin-tabs">
-          <button class="admin-tab active" onclick="switchAdminTab('pane-matches', this)">📅 Серии BO3</button>
+          <button class="admin-tab active" onclick="switchAdminTab('pane-matches', this)">📅 Матчи</button>
           <button class="admin-tab" onclick="switchAdminTab('pane-teams', this)">🏆 Клубы</button>
+          <button class="admin-tab" onclick="switchAdminTab('pane-users', this)">👥 Аккаунты (<span id="admin-users-count-badge">0</span>)</button>
           <button class="admin-tab" onclick="switchAdminTab('pane-news', this)">📰 Новости</button>
-          <button class="admin-tab" onclick="switchAdminTab('pane-rosters', this)">👥 Составы</button>
+          <button class="admin-tab" onclick="switchAdminTab('pane-rosters', this)">🏒 Составы</button>
           <button class="admin-tab" onclick="switchAdminTab('pane-leaders', this)">🌟 Лидеры</button>
         </div>
       </div>
@@ -1289,8 +1741,8 @@
       <div class="admin-scroll-body">
         <div id="pane-matches" class="admin-pane active">
           <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
-            <span style="font-size:11.5px; color:var(--muted);">Выставляй счет серии кнопками <strong>– / +</strong> (или впиши счет матчей И1, И2, И3 для авто-подсчета шайб и серии BO3):</span>
-            <button class="btn-mini" id="admin-add-match" style="background:#fff; color:#000; flex-shrink:0;">+ Серия BO3</button>
+            <span style="font-size:11.5px; color:var(--muted);">Выставляй счет кнопками <strong>– / +</strong>, вписывай результаты игр И1–И3 и нажимай <strong>«⚡ Стата игроков»</strong>:</span>
+            <button class="btn-mini" id="admin-add-match" style="background:#fff; color:#000; flex-shrink:0;">+ Матч</button>
           </div>
           <div id="admin-matches-box"></div>
         </div>
@@ -1306,6 +1758,15 @@
             <button class="btn-mini" id="admin-reset-stats">Обнулить сезон (0)</button>
           </div>
           <div id="admin-teams-box"></div>
+        </div>
+
+        <!-- НОВАЯ ВКЛАДКА В ТЕХ. ПАНЕЛИ: БАЗА ЗАРЕГИСТРИРОВАННЫХ ПОЛЬЗОВАТЕЛЕЙ -->
+        <div id="pane-users" class="admin-pane">
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:12px; color:var(--muted);">База всех зарегистрированных пользователей сайта (Никнейм, Пароль, Любимый клуб, Баланс FTCL Coins и сделанные ставки):</span>
+            <button class="btn-mini" onclick="adminCreateManualUser()" style="background:#fff; color:#000;">+ Создать аккаунт вручную</button>
+          </div>
+          <div id="admin-users-box"></div>
         </div>
 
         <div id="pane-news" class="admin-pane">
@@ -1325,9 +1786,9 @@
         </div>
 
         <div id="pane-leaders" class="admin-pane">
-          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:12px; color:var(--muted);">Карточки лучших игроков регулярного чемпионата:</span>
-            <button class="btn-mini" id="admin-add-leader" style="background:#fff; color:#000;">+ Номинация</button>
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:12px; color:var(--muted);">Снайпер, Бомбардир и Ассистент считаются <strong>автоматически из составов</strong>! Здесь можно добавить дополнительные карточки:</span>
+            <button class="btn-mini" id="admin-add-leader" style="background:#fff; color:#000;">+ Доп. номинация</button>
           </div>
           <div id="admin-leaders-box"></div>
         </div>
@@ -1346,9 +1807,11 @@
 
   <script>
     const ADMIN_PASS = "fTsk9A46Q22";
-    const STORAGE_KEY = "ftcl_season2026_bo3_v21";
+    const STORAGE_KEY = "ftcl_season2026_v23";
+    const CURRENT_USER_KEY = "ftcl_logged_user_v23";
     const DEFAULT_CLOUD_URL = "https://api.npoint.io/d8f5e1ad151410d198f7";
     const MATCH_LIVE_DURATION_MS = 60 * 60 * 1000;
+    const BET_AMOUNT = 100; // Стандартная ставка в FTCL Coins
 
     const DEFAULT_FTCL_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" rx="250" fill="#f7f8fa"/><circle cx="250" cy="250" r="150" fill="none" stroke="#0c0e12" stroke-width="14"/><line x1="145" y1="115" x2="365" y2="355" stroke="#0c0e12" stroke-width="15" stroke-linecap="square"/><path d="M 365 355 Q 382 372 405 362 L 432 348 Q 445 340 438 325 L 428 318 Q 410 330 390 338 Z" fill="#0c0e12"/><line x1="355" y1="115" x2="135" y2="355" stroke="#0c0e12" stroke-width="15" stroke-linecap="square"/><path d="M 135 355 Q 118 372 95 362 L 68 348 Q 55 340 62 325 L 72 318 Q 90 330 110 338 Z" fill="#0c0e12"/><rect x="55" y="192" width="390" height="114" fill="#f7f8fa"/><text x="250" y="266" text-anchor="middle" fill="#0c0e12" font-family="Arial Black,Impact,sans-serif" font-style="italic" font-weight="900" font-size="96" letter-spacing="2">FTCL</text><text x="250" y="294" text-anchor="middle" fill="#6b7280" font-family="Arial,sans-serif" font-style="italic" font-weight="800" font-size="19" letter-spacing="2.5">FUTURE PUCK CLINE LEAGUE</text></svg>`);
 
@@ -1371,12 +1834,13 @@
     const defaultData = {
       cloudUrl: "https://api.npoint.io/d8f5e1ad151410d198f7",
       siteLogo: "",
+      users: [],
       matches: [
-        { dateISO: "2026-10-25", timeVal: "18:00", day: "25 окт", time: "18:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "МЕТАЛЛУРГ", team2: "АВАНГАРД", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", updatedAt: 1 },
-        { dateISO: "2026-10-25", timeVal: "19:00", day: "25 окт", time: "19:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "АК БАРС", team2: "ЛОКОМОТИВ", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", updatedAt: 2 },
-        { dateISO: "2026-10-25", timeVal: "20:00", day: "25 окт", time: "20:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "ЦСКА", team2: "ДИНАМО МОСКВА", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", updatedAt: 3 },
-        { dateISO: "2026-10-26", timeVal: "18:00", day: "26 окт", time: "18:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "САЛАВАТ ЮЛАЕВ", team2: "ТРАКТОР", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", updatedAt: 4 },
-        { dateISO: "2026-10-26", timeVal: "19:00", day: "26 окт", time: "19:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "СЕВЕРСТАЛЬ", team2: "ДИНАМО МИНСК", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", updatedAt: 5 }
+        { id: "m1", dateISO: "2026-10-25", timeVal: "18:00", day: "25 окт", time: "18:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "МЕТАЛЛУРГ", team2: "АВАНГАРД", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", votes1: 0, votes2: 0, userBets: {}, protocol: [], updatedAt: 1 },
+        { id: "m2", dateISO: "2026-10-25", timeVal: "19:00", day: "25 окт", time: "19:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "АК БАРС", team2: "ЛОКОМОТИВ", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", votes1: 0, votes2: 0, userBets: {}, protocol: [], updatedAt: 2 },
+        { id: "m3", dateISO: "2026-10-25", timeVal: "20:00", day: "25 окт", time: "20:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "ЦСКА", team2: "ДИНАМО МОСКВА", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", votes1: 0, votes2: 0, userBets: {}, protocol: [], updatedAt: 3 },
+        { id: "m4", dateISO: "2026-10-26", timeVal: "18:00", day: "26 окт", time: "18:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "САЛАВАТ ЮЛАЕВ", team2: "ТРАКТОР", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", votes1: 0, votes2: 0, userBets: {}, protocol: [], updatedAt: 4 },
+        { id: "m5", dateISO: "2026-10-26", timeVal: "19:00", day: "26 окт", time: "19:00 МСК", statusMode: "AUTO", status: "Скоро", team1: "СЕВЕРСТАЛЬ", team2: "ДИНАМО МИНСК", g1: 0, g2: 0, scoreSet: false, score: "VS", finishType: "REG", map1: "", map2: "", map3: "", votes1: 0, votes2: 0, userBets: {}, protocol: [], updatedAt: 5 }
       ],
       standings: [
         { team: "МЕТАЛЛУРГ",     abbr: "ММГ", gp: 0, w: 0, ot: 0, po: 0, l: 0, gf: 0, ga: 0, pts: 0, avatar: "Металлург.png", players: [] },
@@ -1392,25 +1856,23 @@
       ],
       news: [
         {
-          title: "Предсезонка завершена — старт Регулярного сезона FTCL в формате BO3!",
+          title: "Старт Регулярного сезона FTCL 2026!",
           category: "🔥 Главное",
           date: "24 окт 2026",
           pinned: true,
           image: "",
-          text: "Предсезонный турнир официально окончен! Лига FTCL представляет новый фирменный стиль и переходит к полноценному Регулярному Чемпионату. Все противостояния сезона теперь проходят в формате серий BO3 (до двух побед)."
+          text: "Предсезонный турнир официально окончен! Лига FTCL представляет новый фирменный стиль и переходит к полноценному Регулярному Чемпионату. Зарегистрируйте аккаунт на сайте, получите 500 FTCL Coins и делайте ставки на победителей серий!"
         },
         {
-          title: "Как работает новый формат проведения матчей БО3 (до двух побед)",
+          title: "Как работает новый формат проведения матчей до двух побед",
           category: "📢 Официально",
           date: "24 окт 2026",
           pinned: false,
           image: "",
-          text: "Теперь каждый матч — это серия до двух побед (BO3). Допустим, команда «А» играет с «Б». В первом матче «А» победила — счет в серии 1:0. Во втором матче «Б» взяла реванш и сравняла счет — 1:1 в серии. Тогда играется решающий третий матч за вторую победу. При счете 2:0 третий матч НЕ нужен."
+          text: "Теперь каждый матч — это серия до двух побед. Допустим, команда «А» играет с «Б». В первом матче «А» победила — счет в серии 1:0. Во втором матче «Б» взяла реванш и сравняла счет — 1:1 в серии. Тогда играется решающий третий матч за вторую победу. При счете 2:0 третий матч НЕ нужен."
         }
       ],
       leaders: [
-        { role: "Лучший снайпер (Голы)", player: "Старт сезона", team: "Регулярный сезон FTCL", value: "0" },
-        { role: "Лучший бомбардир (Очки)", player: "Старт сезона", team: "Регулярный сезон FTCL", value: "0" },
         { role: "Надёжный вратарь (% ОБ)", player: "Старт сезона", team: "Регулярный сезон FTCL", value: "0%" }
       ],
       rules: [
@@ -1466,6 +1928,8 @@
       ]
     };
     /* __DATA_END__ */
+
+    let currentUsername = localStorage.getItem(CURRENT_USER_KEY) || "";
 
     function syncModalBodyLock() {
       const anyActive = document.querySelectorAll(".modal-overlay.active").length > 0;
@@ -1531,6 +1995,7 @@
     }
 
     function normalizeMatchObject(m, idx = 0) {
+      if (!m.id) m.id = `m_${idx}_${m.dateISO || '2026'}`;
       if (!m.dateISO) m.dateISO = guessIsoFromDayStr(m.day);
       if (!m.timeVal) m.timeVal = guessTimeFromStr(m.time);
       m.day = formatIsoToRusDay(m.dateISO);
@@ -1540,7 +2005,18 @@
       if (m.map1 === undefined) m.map1 = "";
       if (m.map2 === undefined) m.map2 = "";
       if (m.map3 === undefined) m.map3 = "";
+      if (!m.userBets || typeof m.userBets !== "object") m.userBets = {};
+      if (!Array.isArray(m.protocol)) m.protocol = [];
       if (!m.updatedAt) m.updatedAt = idx + 1;
+
+      // Пересчитываем голоса по реальным ставкам зарегистрированных пользователей
+      let c1 = 0, c2 = 0;
+      Object.values(m.userBets).forEach(choice => {
+        if (choice === 1) c1++;
+        else if (choice === 2) c2++;
+      });
+      m.votes1 = c1;
+      m.votes2 = c2;
 
       if (m.g1 === undefined || m.g2 === undefined) {
         const parsed = parseMatchScore(m.score);
@@ -1578,35 +2054,23 @@
     function safeLoadData() {
       const copy = JSON.parse(JSON.stringify(defaultData));
       try {
-        const rawCurrent = localStorage.getItem(STORAGE_KEY);
-        if (rawCurrent) {
-          const parsed = JSON.parse(rawCurrent);
-          if (parsed && Array.isArray(parsed.standings) && parsed.standings.length > 0) {
-            parsed.standings.forEach(t => {
-              if (!Array.isArray(t.players)) t.players = [];
-              if (!t.abbr) t.abbr = TEAM_ABBR_MAP[(t.team || "").trim().toUpperCase()] || (t.team || "").slice(0, 3).toUpperCase();
-            });
-            if (Array.isArray(parsed.matches)) parsed.matches.forEach((m, idx) => normalizeMatchObject(m, idx));
-            else parsed.matches = copy.matches;
-            if (!Array.isArray(parsed.news) || !parsed.news.length) parsed.news = copy.news;
-            parsed.rules = copy.rules;
-            return parsed;
-          }
-        }
-        const prevKeys = ["ftcl_master_v20", "ftcl_master_v19", "ftcl_master_v18"];
-        for (const k of prevKeys) {
-          const rawOld = localStorage.getItem(k);
-          if (rawOld) {
-            const oldParsed = JSON.parse(rawOld);
-            if (oldParsed && Array.isArray(oldParsed.standings)) {
-              copy.standings.forEach(t => {
-                const foundOld = oldParsed.standings.find(o => (o.team || "").toUpperCase() === t.team.toUpperCase());
-                if (foundOld) {
-                  if (foundOld.avatar) t.avatar = foundOld.avatar;
-                  if (Array.isArray(foundOld.players)) t.players = foundOld.players;
-                }
+        const keys = [STORAGE_KEY, "ftcl_season2026_v22", "ftcl_season2026_bo3_v21"];
+        for (const k of keys) {
+          const rawCurrent = localStorage.getItem(k);
+          if (rawCurrent) {
+            const parsed = JSON.parse(rawCurrent);
+            if (parsed && Array.isArray(parsed.standings) && parsed.standings.length > 0) {
+              parsed.standings.forEach(t => {
+                if (!Array.isArray(t.players)) t.players = [];
+                if (!t.abbr) t.abbr = TEAM_ABBR_MAP[(t.team || "").trim().toUpperCase()] || (t.team || "").slice(0, 3).toUpperCase();
               });
-              break;
+              if (!Array.isArray(parsed.users)) parsed.users = [];
+              if (Array.isArray(parsed.matches)) parsed.matches.forEach((m, idx) => normalizeMatchObject(m, idx));
+              else parsed.matches = copy.matches;
+              if (!Array.isArray(parsed.news) || !parsed.news.length) parsed.news = copy.news;
+              if (!Array.isArray(parsed.leaders)) parsed.leaders = copy.leaders;
+              parsed.rules = copy.rules;
+              return parsed;
             }
           }
         }
@@ -1620,6 +2084,234 @@
     let currentStatusFilter = "ALL";
     let currentNewsCat = "ALL";
     let isCalendarCollapsed = false;
+    let manualTwitchOpen = false;
+    let twitchBodyCollapsed = false;
+
+    // =========================================================================
+    // СИСТЕМА ПОЛЬЗОВАТЕЛЕЙ, РЕГИСТРАЦИИ, АВТОРИЗАЦИИ И ОБЛАЧНОЙ СИНХРОНИЗАЦИИ
+    // =========================================================================
+    function getCurrentUserObj() {
+      if (!currentUsername || !Array.isArray(leagueData.users)) return null;
+      return leagueData.users.find(u => (u.username || "").toLowerCase() === currentUsername.toLowerCase()) || null;
+    }
+
+    function updateHeaderUserButton() {
+      const btn = document.getElementById("header-user-btn");
+      const txt = document.getElementById("header-user-text");
+      const metricUsers = document.getElementById("hero-metric-users");
+      if (metricUsers) metricUsers.textContent = (leagueData.users || []).length;
+      if (!btn || !txt) return;
+
+      const u = getCurrentUserObj();
+      if (u) {
+        btn.classList.add("logged-in");
+        txt.innerHTML = `👤 ${u.username} <span class="user-coins-tag">🪙 ${u.coins ?? 500}</span>`;
+      } else {
+        btn.classList.remove("logged-in");
+        txt.textContent = "👤 Войти";
+      }
+    }
+
+    function showAuthAlert(msg) {
+      const banner = document.getElementById("auth-alert-banner");
+      if (!banner) return;
+      if (!msg) {
+        banner.classList.remove("visible");
+        banner.textContent = "";
+      } else {
+        banner.textContent = msg;
+        banner.classList.add("visible");
+      }
+    }
+
+    window.switchAuthMode = function(mode) {
+      showAuthAlert("");
+      document.getElementById("tab-btn-login").classList.toggle("active", mode === "login");
+      document.getElementById("tab-btn-register").classList.toggle("active", mode === "register");
+      document.getElementById("auth-login-pane").style.display = mode === "login" ? "block" : "none";
+      document.getElementById("auth-register-pane").style.display = mode === "register" ? "block" : "none";
+    };
+
+    window.openAuthModal = function(alertMessage = "") {
+      const favSelect = document.getElementById("reg-fav-team");
+      if (favSelect) {
+        favSelect.innerHTML = leagueData.standings.map(t => `<option value="${t.team}">${t.team}</option>`).join("");
+      }
+      showAuthAlert(alertMessage);
+      renderAuthModalView();
+      openModalWindow("auth-modal");
+    };
+    document.getElementById("close-auth-modal").onclick = () => closeModalWindow("auth-modal");
+
+    function renderAuthModalView() {
+      const u = getCurrentUserObj();
+      const guestView = document.getElementById("auth-guest-view");
+      const profileView = document.getElementById("auth-profile-view");
+      const titleEl = document.getElementById("auth-modal-title");
+
+      if (!u) {
+        titleEl.textContent = "👤 Вход и Регистрация FTCL";
+        guestView.style.display = "block";
+        profileView.style.display = "none";
+        return;
+      }
+
+      titleEl.textContent = `👤 Профиль: ${u.username}`;
+      guestView.style.display = "none";
+      profileView.style.display = "block";
+
+      // Собираем все ставки этого пользователя по всем матчам
+      const myBets = [];
+      leagueData.matches.forEach(m => {
+        const choice = m.userBets ? m.userBets[u.username] : null;
+        if (choice) {
+          const pickedTeam = choice === 1 ? m.team1 : m.team2;
+          let outcomeText = "⏳ Ожидание игры";
+          let outcomeColor = "var(--amber)";
+          if (m.scoreSet && m.g1 !== m.g2) {
+            const won = (choice === 1 && m.g1 > m.g2) || (choice === 2 && m.g2 > m.g1);
+            outcomeText = won ? "✅ Выигрыш (+200 🪙)" : "❌ Проигрыш";
+            outcomeColor = won ? "var(--win)" : "var(--live)";
+          }
+          myBets.push({
+            matchTitle: `${m.team1} vs ${m.team2}`,
+            day: m.day,
+            pickedTeam,
+            outcomeText,
+            outcomeColor
+          });
+        }
+      });
+
+      const betsHtml = myBets.length
+        ? myBets.map(b => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; margin-bottom:6px; font-size:12.5px;">
+              <div>
+                <strong style="color:#fff;">${b.matchTitle}</strong>
+                <div style="font-size:11px; color:var(--muted);">${b.day} • Ставка на: <strong style="color:var(--silver);">${b.pickedTeam}</strong></div>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; font-weight:800; color:${b.outcomeColor};">${b.outcomeText}</span>
+            </div>
+          `).join("")
+        : `<div style="padding:14px; text-align:center; color:var(--muted); font-size:12.5px; background:rgba(255,255,255,0.02); border-radius:10px;">Ты еще не сделал ни одной ставки. Нажми на кнопку команды в карточке любого матча!</div>`;
+
+      profileView.innerHTML = `
+        <div class="user-profile-header">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <img src="${findTeamLogo(u.favTeam)}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:48px; height:48px; object-fit:contain;">
+            <div>
+              <div style="font-size:11px; color:var(--muted); font-weight:700;">Болельщик ХК «${u.favTeam || 'FTCL'}» • Рег: ${u.regDate || '2026'}</div>
+              <h4 style="font-family:'Unbounded',sans-serif; font-size:18px; color:#fff;">${u.username}</h4>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:10px; color:var(--muted); text-transform:uppercase; font-weight:800;">Баланс аккаунта</div>
+            <strong style="font-family:'JetBrains Mono',monospace; font-size:20px; color:var(--amber);">🪙 ${u.coins ?? 500} FTCL</strong>
+          </div>
+        </div>
+
+        <div class="mc-block">
+          <div class="mc-block-title">
+            <span>🎯 Мои ставки на матчи (${myBets.length})</span>
+            <span class="mono-num" style="font-size:11px;">Ставка = 100 🪙</span>
+          </div>
+          ${betsHtml}
+        </div>
+
+        <button type="button" class="btn-mini" style="width:100%; padding:11px; color:#ff5c64; border-color:rgba(255,92,100,0.35);" onclick="handleUserLogout()">
+          🚪 Выйти из аккаунта
+        </button>
+      `;
+    }
+
+    // Фоновое сохранение базы пользователей и ставок в облако npoint.io
+    async function saveUsersAndBetsToCloud() {
+      leagueData.seasonMode = "BO3_2026";
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(leagueData)); } catch (e) {}
+      const url = (leagueData.cloudUrl || DEFAULT_CLOUD_URL || "").trim();
+      if (!url) return;
+      try {
+        await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(leagueData)
+        });
+      } catch (e) {}
+    }
+
+    window.handleUserRegister = async function() {
+      const username = document.getElementById("reg-username").value.trim();
+      const password = document.getElementById("reg-password").value.trim();
+      const favTeam = document.getElementById("reg-fav-team").value;
+
+      if (username.length < 3) {
+        showAuthAlert("⚠️ Никнейм должен содержать минимум 3 символа!");
+        return;
+      }
+      if (password.length < 4) {
+        showAuthAlert("⚠️ Пароль должен содержать минимум 4 символа!");
+        return;
+      }
+
+      if (!Array.isArray(leagueData.users)) leagueData.users = [];
+      const exists = leagueData.users.some(u => (u.username || "").toLowerCase() === username.toLowerCase());
+      if (exists) {
+        showAuthAlert("⚠️ Такой никнейм уже зарегистрирован! Выбери другой или войди в аккаунт.");
+        return;
+      }
+
+      const nowMsk = new Date(Date.now() + 3 * 3600 * 1000);
+      const isoToday = nowMsk.toISOString().slice(0, 10);
+
+      const newUser = {
+        username,
+        password,
+        favTeam: favTeam || "МЕТАЛЛУРГ",
+        coins: 500,
+        regDate: `${formatIsoToRusDay(isoToday)} 2026`,
+        betsCount: 0
+      };
+
+      leagueData.users.push(newUser);
+      currentUsername = username;
+      try { localStorage.setItem(CURRENT_USER_KEY, currentUsername); } catch (e) {}
+
+      showAuthAlert("");
+      renderAll();
+      renderAuthModalView();
+      await saveUsersAndBetsToCloud();
+    };
+
+    window.handleUserLogin = function() {
+      const username = document.getElementById("login-username").value.trim();
+      const password = document.getElementById("login-password").value.trim();
+
+      if (!Array.isArray(leagueData.users)) leagueData.users = [];
+      const found = leagueData.users.find(u => (u.username || "").toLowerCase() === username.toLowerCase());
+      if (!found) {
+        showAuthAlert("⚠️ Пользователь с таким никнеймом не найден! Переключись на вкладку «Регистрация».");
+        return;
+      }
+      if (found.password !== password) {
+        showAuthAlert("⚠️ Неверный пароль!");
+        return;
+      }
+
+      currentUsername = found.username;
+      try { localStorage.setItem(CURRENT_USER_KEY, currentUsername); } catch (e) {}
+
+      showAuthAlert("");
+      renderAll();
+      renderAuthModalView();
+    };
+
+    window.handleUserLogout = function() {
+      currentUsername = "";
+      try { localStorage.removeItem(CURRENT_USER_KEY); } catch (e) {}
+      renderAll();
+      switchAuthMode("login");
+      renderAuthModalView();
+    };
 
     function computeBo3Breakdown(m) {
       const maps = [m.map1, m.map2, m.map3].map(parseMatchScore).filter(Boolean);
@@ -1638,6 +2330,8 @@
       leagueData.standings.forEach(t => {
         t.gp = 0; t.w = 0; t.ot = 0; t.po = 0; t.l = 0; t.gf = 0; t.ga = 0; t.pts = 0;
       });
+
+      let totalPlayedSeries = 0;
 
       leagueData.matches.forEach((m, idx) => {
         normalizeMatchObject(m, idx);
@@ -1660,6 +2354,7 @@
         const t2 = leagueData.standings.find(t => t.team.trim().toUpperCase() === (m.team2 || "").trim().toUpperCase());
         if (!t1 || !t2) return;
 
+        totalPlayedSeries++;
         t1.gp += 1; t2.gp += 1;
 
         const goalsTeam1 = bo3 ? bo3.gf1 : g1;
@@ -1667,7 +2362,7 @@
         t1.gf += goalsTeam1; t1.ga += goalsTeam2;
         t2.gf += goalsTeam2; t2.ga += goalsTeam1;
 
-        const isExtra = (m.finishType === "OT" || m.finishType === "SO");
+        const isExtra = (m.finishType === "OT" || m.finishType === "SO" || (g1 + g2 === 3 && Math.max(g1, g2) === 2));
 
         if (g1 > g2) {
           if (isExtra) {
@@ -1691,45 +2386,171 @@
       leagueData.standings.forEach(t => {
         t.goals = `${(parseInt(t.gf) || 0) - (parseInt(t.ga) || 0)}`;
       });
+
+      // Подсчет количества ставок каждого пользователя
+      if (Array.isArray(leagueData.users)) {
+        leagueData.users.forEach(u => {
+          let bCount = 0;
+          leagueData.matches.forEach(m => {
+            if (m.userBets && m.userBets[u.username]) bCount++;
+          });
+          u.betsCount = bCount;
+        });
+      }
+
+      const elClubs = document.getElementById("hero-metric-clubs");
+      const elPlayed = document.getElementById("hero-metric-played");
+      const elUsers = document.getElementById("hero-metric-users");
+      if (elClubs) elClubs.textContent = leagueData.standings.length;
+      if (elPlayed) elPlayed.textContent = totalPlayedSeries;
+      if (elUsers) elUsers.textContent = (leagueData.users || []).length;
     }
 
-    function updateSmartHeaderWidget() {
+    function syncLiveTwitchPlayer() {
+      const wrap = document.getElementById("live-twitch-wrap");
+      const iframeBox = document.getElementById("live-iframe-box");
+      const label = document.getElementById("live-twitch-label");
+      if (!wrap || !iframeBox) return;
+
+      const liveMatch = leagueData.matches.find(m => getEffectiveStatus(m) === "LIVE");
+      const shouldShow = Boolean(liveMatch) || manualTwitchOpen;
+
+      if (shouldShow) {
+        wrap.classList.add("active");
+        if (liveMatch && label) {
+          const sc = liveMatch.scoreSet ? `${liveMatch.g1}:${liveMatch.g2}` : "0:0";
+          label.textContent = `🔴 LIVE ЭФИР: ${liveMatch.team1} ${sc} ${liveMatch.team2}`;
+        } else if (label) {
+          label.textContent = `ПРЯМАЯ ТРАНСЛЯЦИЯ FTCL (TWITCH)`;
+        }
+        if (!iframeBox.innerHTML.trim() && !twitchBodyCollapsed) {
+          const parentHost = window.location.hostname || "ftcl-site.github.io";
+          iframeBox.innerHTML = `<iframe src="https://player.twitch.tv/?channel=ftclstream&parent=${parentHost}&muted=true" allowfullscreen></iframe>`;
+        }
+      } else {
+        wrap.classList.remove("active");
+        iframeBox.innerHTML = "";
+      }
+    }
+
+    window.toggleManualTwitchPlayer = function() {
+      manualTwitchOpen = !manualTwitchOpen;
+      twitchBodyCollapsed = false;
+      syncLiveTwitchPlayer();
+      if (manualTwitchOpen) {
+        document.getElementById("live-twitch-wrap").scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    window.toggleTwitchBodyCollapse = function() {
+      twitchBodyCollapsed = !twitchBodyCollapsed;
+      const box = document.getElementById("live-iframe-box");
+      const btn = document.getElementById("toggle-twitch-collapse-btn");
+      box.classList.toggle("collapsed", twitchBodyCollapsed);
+      btn.textContent = twitchBodyCollapsed ? "Развернуть плеер ▼" : "Свернуть плеер ▲";
+      if (twitchBodyCollapsed) box.innerHTML = "";
+      else syncLiveTwitchPlayer();
+    };
+
+    function updateCountdownAndHeaderWidget() {
       const pill = document.getElementById("smart-header-pill");
       const textEl = document.getElementById("smart-header-text");
       const dotEl = document.getElementById("smart-header-dot");
-      if (!pill || !textEl || !dotEl) return;
 
       const liveMatch = leagueData.matches.find(m => getEffectiveStatus(m) === "LIVE");
-      if (liveMatch) {
-        pill.classList.add("is-live");
-        pill.href = "#matches";
-        dotEl.style.background = "#ff2a4b";
-        dotEl.style.boxShadow = "0 0 8px #ff2a4b";
-        const sc = liveMatch.scoreSet ? `${liveMatch.g1}:${liveMatch.g2}` : "0:0";
-        textEl.textContent = `LIVE: ${getTeamAbbr(liveMatch.team1)} ${sc} ${getTeamAbbr(liveMatch.team2)}`;
-        return;
-      }
-
-      pill.classList.remove("is-live");
       const upcoming = leagueData.matches
         .filter(m => getEffectiveStatus(m) === "Скоро")
         .sort((a, b) => (getMatchStartMs(a) || 0) - (getMatchStartMs(b) || 0));
 
-      if (upcoming.length > 0) {
-        const next = upcoming[0];
-        pill.href = "#matches";
-        dotEl.style.background = "#ffffff";
-        dotEl.style.boxShadow = "0 0 8px #ffffff";
-        textEl.textContent = `BO3: ${getTeamAbbr(next.team1)} — ${getTeamAbbr(next.team2)} (${next.timeVal || next.time})`;
+      if (pill && textEl && dotEl) {
+        if (liveMatch) {
+          pill.classList.add("is-live");
+          pill.href = "#matches";
+          dotEl.style.background = "#ff2a4b";
+          dotEl.style.boxShadow = "0 0 8px #ff2a4b";
+          const sc = liveMatch.scoreSet ? `${liveMatch.g1}:${liveMatch.g2}` : "0:0";
+          textEl.textContent = `LIVE: ${getTeamAbbr(liveMatch.team1)} ${sc} ${getTeamAbbr(liveMatch.team2)}`;
+        } else if (upcoming.length > 0) {
+          pill.classList.remove("is-live");
+          const next = upcoming[0];
+          pill.href = "#matches";
+          dotEl.style.background = "#ffffff";
+          dotEl.style.boxShadow = "0 0 8px #ffffff";
+          textEl.textContent = `След: ${getTeamAbbr(next.team1)} — ${getTeamAbbr(next.team2)} (${next.timeVal || next.time})`;
+        } else {
+          pill.classList.remove("is-live");
+          const sorted = getSortedStandings();
+          const top = sorted[0];
+          pill.href = "#standings";
+          dotEl.style.background = "#10b981";
+          dotEl.style.boxShadow = "0 0 8px #10b981";
+          textEl.textContent = top ? `🏆 ${getTeamAbbr(top.team)} (${top.pts} очк.)` : "FTCL";
+        }
+      }
+
+      const cdLabel = document.getElementById("cd-status-label");
+      const cdDate = document.getElementById("cd-match-datetime");
+      const cdT1Logo = document.getElementById("cd-t1-logo");
+      const cdT2Logo = document.getElementById("cd-t2-logo");
+      const cdT1Name = document.getElementById("cd-t1-name");
+      const cdT2Name = document.getElementById("cd-t2-name");
+      const cdVsPill = document.getElementById("cd-vs-pill");
+      const elD = document.getElementById("cd-d");
+      const elH = document.getElementById("cd-h");
+      const elM = document.getElementById("cd-m");
+      const elS = document.getElementById("cd-s");
+
+      if (!cdLabel) return;
+
+      if (liveMatch) {
+        cdLabel.innerHTML = `<span class="live-dot"></span> ИДЕТ ПРЯМО СЕЙЧАС`;
+        cdLabel.style.color = "var(--live)";
+        cdDate.textContent = `${liveMatch.day} • ${liveMatch.time}`;
+        cdT1Logo.src = findTeamLogo(liveMatch.team1);
+        cdT2Logo.src = findTeamLogo(liveMatch.team2);
+        cdT1Name.textContent = getTeamAbbr(liveMatch.team1);
+        cdT2Name.textContent = getTeamAbbr(liveMatch.team2);
+        cdVsPill.textContent = liveMatch.scoreSet ? `${liveMatch.g1}:${liveMatch.g2}` : "LIVE";
+        elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
         return;
       }
 
-      const sorted = getSortedStandings();
-      const top = sorted[0];
-      pill.href = "#standings";
-      dotEl.style.background = "#10b981";
-      dotEl.style.boxShadow = "0 0 8px #10b981";
-      textEl.textContent = top ? `🏆 ${getTeamAbbr(top.team)} (${top.pts} очк.)` : "FTCL BO3";
+      if (upcoming.length > 0) {
+        const next = upcoming[0];
+        cdLabel.textContent = "⏳ ДО БЛИЖАЙШЕЙ ИГРЫ";
+        cdLabel.style.color = "var(--amber)";
+        cdDate.textContent = `${next.day} • ${next.time}`;
+        cdT1Logo.src = findTeamLogo(next.team1);
+        cdT2Logo.src = findTeamLogo(next.team2);
+        cdT1Name.textContent = getTeamAbbr(next.team1);
+        cdT2Name.textContent = getTeamAbbr(next.team2);
+        cdVsPill.textContent = "VS";
+
+        const diffMs = Math.max(0, (getMatchStartMs(next) || 0) - Date.now());
+        const totalSec = Math.floor(diffMs / 1000);
+        const d = Math.floor(totalSec / 86400);
+        const h = Math.floor((totalSec % 86400) / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+
+        elD.textContent = String(d).padStart(2, "0");
+        elH.textContent = String(h).padStart(2, "0");
+        elM.textContent = String(m).padStart(2, "0");
+        elS.textContent = String(s).padStart(2, "0");
+      } else {
+        cdLabel.textContent = "✅ ВСЕ МАТЧИ СЫГРАНЫ";
+        cdLabel.style.color = "var(--win)";
+        cdDate.textContent = "Сезон 2026";
+        const sorted = getSortedStandings();
+        const t1 = sorted[0] || leagueData.standings[0];
+        const t2 = sorted[1] || leagueData.standings[1];
+        cdT1Logo.src = t1?.avatar || DEFAULT_FTCL_AVATAR;
+        cdT2Logo.src = t2?.avatar || DEFAULT_FTCL_AVATAR;
+        cdT1Name.textContent = getTeamAbbr(t1?.team);
+        cdT2Name.textContent = getTeamAbbr(t2?.team);
+        cdVsPill.textContent = "ТОП";
+        elD.textContent = "00"; elH.textContent = "00"; elM.textContent = "00"; elS.textContent = "00";
+      }
     }
 
     window.toggleCalendarSection = function() {
@@ -1756,7 +2577,48 @@
       return (found && found.avatar) ? found.avatar : DEFAULT_FTCL_AVATAR;
     }
 
-    // Рендер карточек серий в новом стиле ТВ-скорборда
+    // Ставка на матч (ТОЛЬКО ДЛЯ ЗАРЕГИСТРИРОВАННЫХ ПОЛЬЗОВАТЕЛЕЙ)
+    window.voteForMatch = async function(event, matchIdx, teamChoice) {
+      if (event) event.stopPropagation();
+
+      const u = getCurrentUserObj();
+      if (!u) {
+        openAuthModal("🔒 Чтобы сделать ставку на матч, войдите в свой аккаунт или зарегистрируйтесь за 10 секунд!");
+        return;
+      }
+
+      const m = leagueData.matches[matchIdx];
+      if (!m) return;
+
+      if (getEffectiveStatus(m) === "Завершен" || m.scoreSet) {
+        alert("⏹ Прием ставок на этот матч уже закрыт (серия завершена)!");
+        return;
+      }
+
+      if (!m.userBets || typeof m.userBets !== "object") m.userBets = {};
+      const prevVote = m.userBets[u.username];
+
+      if (prevVote === teamChoice) return;
+
+      // Если это первая ставка пользователя на этот матч — списываем 100 FTCL Coins
+      if (!prevVote) {
+        if ((u.coins ?? 500) < BET_AMOUNT) {
+          alert(`⚠️ На твоем балансе недостаточно монет (${u.coins} FTCL Coins). Для ставки нужно ${BET_AMOUNT} FTCL Coins.`);
+          return;
+        }
+        u.coins = (u.coins ?? 500) - BET_AMOUNT;
+      }
+
+      m.userBets[u.username] = teamChoice;
+      normalizeMatchObject(m, matchIdx);
+
+      renderAll();
+      if (document.getElementById("match-center-modal").classList.contains("active")) {
+        openMatchCenter(matchIdx);
+      }
+      await saveUsersAndBetsToCloud();
+    };
+
     function renderCalendar() {
       leagueData.matches.forEach((m, idx) => {
         normalizeMatchObject(m, idx);
@@ -1800,9 +2662,12 @@
 
       const mBox = document.getElementById("matches-container");
       if (!filtered.length) {
-        mBox.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border); color:var(--muted);">Серий по выбранному фильтру нет.</div>`;
+        mBox.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:24px; background:var(--bg-surface); border-radius:var(--radius-lg); border:1px solid var(--border); color:var(--muted);">Матчей по выбранному фильтру нет.</div>`;
         return;
       }
+
+      const u = getCurrentUserObj();
+
       mBox.innerHTML = filtered.map(m => {
         const effStatus = m.status;
         const isLive = effStatus === "LIVE";
@@ -1816,7 +2681,7 @@
           : `<span class="finish-tag" style="background:rgba(255,255,255,0.08);color:var(--silver);">BO3</span>`;
 
         const statusLabel = isDone
-          ? (fType === "OT" ? "Завершен (ОТ)" : fType === "SO" ? "Завершен (Б)" : fType === "TP" ? "Завершен (ТП)" : "Серия завершена")
+          ? (fType === "OT" ? "Завершен (ОТ)" : fType === "SO" ? "Завершен (Б)" : fType === "TP" ? "Завершен (ТП)" : "Завершен")
           : (isLive ? "LIVE" : "Скоро");
 
         const g1Val = m.scoreSet ? m.g1 : (isLive ? 0 : "–");
@@ -1830,13 +2695,17 @@
           m.map3 ? `<span class="bo3-game-pill">И3: ${m.map3}</span>` : ""
         ].filter(Boolean).join("");
 
+        const v1 = m.votes1 || 0;
+        const v2 = m.votes2 || 0;
+        const totalV = v1 + v2;
+        const p1 = totalV > 0 ? Math.round((v1 / totalV) * 100) : 50;
+        const p2 = totalV > 0 ? (100 - p1) : 50;
+        const myVote = (u && m.userBets) ? m.userBets[u.username] : null;
+
         return `
-          <div class="match-card ${isLive ? 'is-live-card' : ''}">
+          <div class="match-card ${isLive ? 'is-live-card' : ''}" onclick="openMatchCenter(${m._listIdx})">
             <div class="match-meta">
-              <div style="display:flex; gap:6px; align-items:center;">
-                <span class="match-bo3-tag">BO3</span>
-                <span class="match-day-badge">${m.day || 'Сезон'}${m.time ? ' • ' + m.time : ''}</span>
-              </div>
+              <span class="match-day-badge">${m.day || 'Сезон'}${m.time ? ' • ' + m.time : ''}</span>
               <span class="match-status ${isDone ? 'done' : (isLive ? 'live' : '')}">${isLive ? '<span class="live-dot"></span>' : ''}${statusLabel}</span>
             </div>
 
@@ -1857,9 +2726,26 @@
               </div>
             </div>
 
+            <!-- Ставки (требуется аккаунт) -->
+            <div class="pickem-box" onclick="event.stopPropagation()">
+              <div class="pickem-top">
+                <button type="button" class="pickem-btn ${myVote === 1 ? 'voted' : ''}" onclick="voteForMatch(event, ${m._listIdx}, 1)">
+                  ${u ? '🪙' : '🔒'} ${getTeamAbbr(m.team1)} (${p1}%)
+                </button>
+                <span style="font-size:10px; color:var(--muted); font-weight:700;">Ставок: ${totalV}</span>
+                <button type="button" class="pickem-btn ${myVote === 2 ? 'voted' : ''}" onclick="voteForMatch(event, ${m._listIdx}, 2)">
+                  (${p2}%) ${getTeamAbbr(m.team2)} ${u ? '🪙' : '🔒'}
+                </button>
+              </div>
+              <div class="pickem-bar-track">
+                <div class="pickem-bar-fill-1" style="width:${p1}%"></div>
+                <div class="pickem-bar-fill-2" style="width:${p2}%"></div>
+              </div>
+            </div>
+
             <div class="bo3-games-strip">
               <div class="bo3-pills-wrap">
-                ${gamesList || '<span>Серия до 2 побед</span>'}
+                ${gamesList || '<span>Формат BO3 • Протокол →</span>'}
               </div>
               ${finishBadge}
             </div>
@@ -1867,6 +2753,130 @@
         `;
       }).join("");
     }
+
+    window.openMatchCenter = function(matchIdx) {
+      const m = leagueData.matches[matchIdx];
+      if (!m) return;
+
+      const u = getCurrentUserObj();
+      const v1 = m.votes1 || 0;
+      const v2 = m.votes2 || 0;
+      const totalV = v1 + v2;
+      const p1 = totalV > 0 ? Math.round((v1 / totalV) * 100) : 50;
+      const p2 = totalV > 0 ? (100 - p1) : 50;
+      const myVote = (u && m.userBets) ? m.userBets[u.username] : null;
+
+      // Список кто на кого поставил в этом матче
+      const bettorsEntries = Object.entries(m.userBets || {});
+      const bettorsHtml = bettorsEntries.length
+        ? `<div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;">
+            ${bettorsEntries.map(([nick, teamNum]) => `
+              <span class="bo3-game-pill" style="font-size:11px;">👤 ${nick} → <strong>${getTeamAbbr(teamNum === 1 ? m.team1 : m.team2)}</strong></span>
+            `).join("")}
+          </div>`
+        : `<div style="font-size:11.5px; color:var(--muted); margin-top:8px;">Пока никто из зарегистрированных игроков не сделал ставку. Будь первым!</div>`;
+
+      const gamesPills = [
+        m.map1 ? `<span class="bo3-game-pill" style="font-size:12px; padding:4px 10px;">1-й матч: <strong>${m.map1}</strong></span>` : "",
+        m.map2 ? `<span class="bo3-game-pill" style="font-size:12px; padding:4px 10px;">2-й матч: <strong>${m.map2}</strong></span>` : "",
+        m.map3 ? `<span class="bo3-game-pill" style="font-size:12px; padding:4px 10px;">3-й матч: <strong>${m.map3}</strong></span>` : ""
+      ].filter(Boolean).join("");
+
+      const protocolList = Array.isArray(m.protocol) && m.protocol.length > 0
+        ? m.protocol.map(ev => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; margin-bottom:6px; font-size:13px;">
+              <div>
+                <strong style="color:#fff;">${ev.player}</strong>
+                <span style="font-size:11px; color:var(--muted); margin-left:6px;">(${ev.team})</span>
+              </div>
+              <div class="mono-num" style="font-weight:800; color:var(--silver);">
+                ${ev.g > 0 ? `🏒 Голы: ${ev.g} ` : ''}${ev.a > 0 ? `🎯 Пасы: ${ev.a}` : ''}
+              </div>
+            </div>
+          `).join("")
+        : `<div style="font-size:12.5px; color:var(--muted); text-align:center; padding:10px;">Протокол игроков формируется после завершения игр.</div>`;
+
+      const h2hMatches = leagueData.matches.filter(x =>
+        x.scoreSet &&
+        ((x.team1 === m.team1 && x.team2 === m.team2) || (x.team1 === m.team2 && x.team2 === m.team1))
+      );
+      let winsT1 = 0, winsT2 = 0;
+      h2hMatches.forEach(x => {
+        if (x.team1 === m.team1) {
+          if (x.g1 > x.g2) winsT1++; else if (x.g2 > x.g1) winsT2++;
+        } else {
+          if (x.g2 > x.g1) winsT1++; else if (x.g1 > x.g2) winsT2++;
+        }
+      });
+
+      document.getElementById("mc-modal-title").textContent = `${getTeamAbbr(m.team1)} vs ${getTeamAbbr(m.team2)} • Протокол матча`;
+      document.getElementById("mc-modal-body").innerHTML = `
+        <div class="mc-scoreboard">
+          <div class="mc-team">
+            <img src="${findTeamLogo(m.team1)}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" alt="">
+            <strong>${m.team1}</strong>
+          </div>
+          <div class="mc-score-center">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);">${m.day} • ${m.time}</span>
+            <div class="mc-big-score">${m.scoreSet ? `${m.g1} : ${m.g2}` : 'VS'}</div>
+            <span style="font-size:11px; font-weight:800; color:var(--amber);">${m.status} • Формат BO3</span>
+          </div>
+          <div class="mc-team">
+            <img src="${findTeamLogo(m.team2)}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" alt="">
+            <strong>${m.team2}</strong>
+          </div>
+        </div>
+
+        ${gamesPills ? `<div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:14px;">${gamesPills}</div>` : ''}
+
+        <div class="mc-block">
+          <div class="mc-block-title">
+            <span>🪙 Ставки на серию (Только для аккаунтов FTCL)</span>
+            <span class="mono-num" style="font-size:11px;">Ставок: ${totalV}</span>
+          </div>
+          <div class="pickem-top" style="margin-bottom:8px;">
+            <button type="button" class="pickem-btn ${myVote === 1 ? 'voted' : ''}" onclick="voteForMatch(event, ${matchIdx}, 1)">
+              ${u ? '🪙' : '🔒'} Ставка на ${getTeamAbbr(m.team1)} (${p1}%)
+            </button>
+            <button type="button" class="pickem-btn ${myVote === 2 ? 'voted' : ''}" onclick="voteForMatch(event, ${matchIdx}, 2)">
+              (${p2}%) Ставка на ${getTeamAbbr(m.team2)} ${u ? '🪙' : '🔒'}
+            </button>
+          </div>
+          <div class="pickem-bar-track" style="height:8px;">
+            <div class="pickem-bar-fill-1" style="width:${p1}%"></div>
+            <div class="pickem-bar-fill-2" style="width:${p2}%"></div>
+          </div>
+          ${bettorsHtml}
+        </div>
+
+        <div class="mc-block">
+          <div class="mc-block-title">
+            <span>📝 Протокол серии (Отличившиеся игроки)</span>
+          </div>
+          ${protocolList}
+        </div>
+
+        <div class="mc-block" style="margin-bottom:0;">
+          <div class="mc-block-title">
+            <span>⚔️ История личных встреч (H2H)</span>
+            <span class="mono-num">Сыграно серий: ${h2hMatches.length}</span>
+          </div>
+          <div style="display:flex; justify-content:space-around; align-items:center; text-align:center; padding:6px 0;">
+            <div>
+              <strong style="font-family:'Unbounded',sans-serif; font-size:20px; color:#fff;">${winsT1}</strong>
+              <div style="font-size:11px; color:var(--muted);">Победы ${getTeamAbbr(m.team1)}</div>
+            </div>
+            <div style="font-size:12px; color:var(--muted);">VS</div>
+            <div>
+              <strong style="font-family:'Unbounded',sans-serif; font-size:20px; color:#fff;">${winsT2}</strong>
+              <div style="font-size:11px; color:var(--muted);">Победы ${getTeamAbbr(m.team2)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      openModalWindow("match-center-modal");
+    };
+    document.getElementById("close-mc-modal").onclick = () => closeModalWindow("match-center-modal");
 
     window.setDayFilter = (d) => { currentDayFilter = d; renderCalendar(); };
     window.setStatusFilter = (s) => {
@@ -1939,6 +2949,82 @@
     };
     document.getElementById("close-news-modal").onclick = () => closeModalWindow("news-modal");
 
+    function renderAutoLeaders() {
+      const allPlayers = [];
+      leagueData.standings.forEach(club => {
+        (club.players || []).forEach(p => {
+          const g = parseInt(p.g, 10) || 0;
+          const a = parseInt(p.a, 10) || 0;
+          const pts = (parseInt(p.pts, 10) || (g + a));
+          const gp = parseInt(p.gp, 10) || 0;
+          allPlayers.push({
+            name: p.name || "Игрок",
+            num: p.num || "",
+            pos: p.pos || "Игрок",
+            g, a, pts, gp,
+            team: club.team,
+            avatar: club.avatar || DEFAULT_FTCL_AVATAR
+          });
+        });
+      });
+
+      const byPts = [...allPlayers].sort((x, y) => (y.pts - x.pts) || (y.g - x.g) || (x.gp - y.gp));
+      const byGoals = [...allPlayers].sort((x, y) => (y.g - x.g) || (y.pts - x.pts) || (x.gp - y.gp));
+      const byAssists = [...allPlayers].sort((x, y) => (y.a - x.a) || (y.pts - x.pts) || (x.gp - y.gp));
+
+      const topScorer = byPts[0] && byPts[0].pts > 0 ? byPts[0] : null;
+      const topSniper = byGoals[0] && byGoals[0].g > 0 ? byGoals[0] : null;
+      const topAssist = byAssists[0] && byAssists[0].a > 0 ? byAssists[0] : null;
+
+      const autoCards = [
+        {
+          role: "🔥 Лучший бомбардир (Голы + Пасы)",
+          player: topScorer ? `${topScorer.num ? topScorer.num + ' ' : ''}${topScorer.name}` : "Ожидание игр",
+          team: topScorer ? `${topScorer.team} (${topScorer.g}Г + ${topScorer.a}П)` : "Авто-расчет из составов",
+          value: topScorer ? `${topScorer.pts}` : "0",
+          logo: topScorer ? topScorer.avatar : DEFAULT_FTCL_AVATAR
+        },
+        {
+          role: "🎯 Лучший снайпер (Голы)",
+          player: topSniper ? `${topSniper.num ? topSniper.num + ' ' : ''}${topSniper.name}` : "Ожидание игр",
+          team: topSniper ? `${topSniper.team} (Игр: ${topSniper.gp})` : "Авто-расчет из составов",
+          value: topSniper ? `${topSniper.g}` : "0",
+          logo: topSniper ? topSniper.avatar : DEFAULT_FTCL_AVATAR
+        },
+        {
+          role: "🏒 Лучший ассистент (Передачи)",
+          player: topAssist ? `${topAssist.num ? topAssist.num + ' ' : ''}${topAssist.name}` : "Ожидание игр",
+          team: topAssist ? `${topAssist.team} (Игр: ${topAssist.gp})` : "Авто-расчет из составов",
+          value: topAssist ? `${topAssist.a}` : "0",
+          logo: topAssist ? topAssist.avatar : DEFAULT_FTCL_AVATAR
+        }
+      ];
+
+      (leagueData.leaders || []).forEach(custom => {
+        autoCards.push({
+          role: custom.role,
+          player: custom.player,
+          team: custom.team,
+          value: custom.value,
+          logo: findTeamLogo(custom.team)
+        });
+      });
+
+      document.getElementById("leaders-container").innerHTML = autoCards.map(l => `
+        <div class="stat-card">
+          <div class="stat-left">
+            <img class="stat-club-logo" src="${l.logo}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" alt="">
+            <div style="min-width:0;">
+              <div class="stat-role">${l.role}</div>
+              <div class="stat-player">${l.player}</div>
+              <div class="stat-team">${l.team}</div>
+            </div>
+          </div>
+          <div class="stat-value">${l.value}</div>
+        </div>
+      `).join("");
+    }
+
     function getSortedStandings() {
       return leagueData.standings
         .map((team, originalIndex) => {
@@ -1959,9 +3045,12 @@
     function renderAll() {
       recalculateStandingsFromMatches();
       applySiteAvatar();
+      updateHeaderUserButton();
       renderCalendar();
       renderNews();
-      updateSmartHeaderWidget();
+      renderAutoLeaders();
+      updateCountdownAndHeaderWidget();
+      syncLiveTwitchPlayer();
 
       const sorted = getSortedStandings();
       document.getElementById("standings-body").innerHTML = sorted.map((t, i) => {
@@ -1993,17 +3082,6 @@
           </tr>
         `;
       }).join("");
-
-      document.getElementById("leaders-container").innerHTML = leagueData.leaders.map(l => `
-        <div class="stat-card">
-          <div>
-            <div class="stat-role">${l.role}</div>
-            <div class="stat-player">${l.player}</div>
-            <div class="stat-team">${l.team}</div>
-          </div>
-          <div class="stat-value">${l.value}</div>
-        </div>
-      `).join("");
 
       renderRules();
     }
@@ -2079,7 +3157,7 @@
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
           <img src="${t.avatar || DEFAULT_FTCL_AVATAR}" onerror="this.src='${DEFAULT_FTCL_AVATAR}'" style="width:60px; height:60px; object-fit:contain;">
           <div>
-            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase;">Клуб FTCL (${getTeamAbbr(t.team)}) • Серий: ${t.gp} | Очков: ${t.pts} | Разница: ${diff} (${gf}:${ga})</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase;">Клуб FTCL (${getTeamAbbr(t.team)}) • Игр: ${t.gp} | Очков: ${t.pts} | Разница: ${diff} (${gf}:${ga})</div>
             <h3 style="font-family:'Unbounded',sans-serif; font-size:20px;">ХК «${t.team}»</h3>
           </div>
         </div>
@@ -2128,6 +3206,7 @@
           const remote = await res.json();
           if (remote && Array.isArray(remote.standings) && remote.standings.length > 0 && remote.seasonMode === "BO3_2026") {
             remote.cloudUrl = url;
+            if (!Array.isArray(remote.users)) remote.users = [];
             if (Array.isArray(remote.matches)) remote.matches.forEach((m, idx) => normalizeMatchObject(m, idx));
             if (!Array.isArray(remote.news)) remote.news = defaultData.news;
             remote.rules = defaultData.rules;
@@ -2154,7 +3233,7 @@
           body: JSON.stringify(leagueData)
         });
         if (res.ok) {
-          alert("☁️ Сохранено в Облако! Регулярный сезон BO3 обновлен на всех устройствах.");
+          alert("☁️ Сохранено в Облако! Расписание, база аккаунтов, таблица и лидеры обновлены на всех устройствах.");
         } else {
           alert("⚠️ Сохранено локально (код ответа облака: " + res.status + ").");
         }
@@ -2289,6 +3368,72 @@
       renderAdmin();
     };
 
+    window.addQuickMatchPlayerStat = function(matchIdx) {
+      const m = leagueData.matches[matchIdx];
+      if (!m) return;
+      const teamName = document.getElementById(`qstat-team-${matchIdx}`).value;
+      const selectPlayer = document.getElementById(`qstat-player-${matchIdx}`).value;
+      const customName = document.getElementById(`qstat-custom-${matchIdx}`).value.trim();
+      const gAdd = parseInt(document.getElementById(`qstat-g-${matchIdx}`).value, 10) || 0;
+      const aAdd = parseInt(document.getElementById(`qstat-a-${matchIdx}`).value, 10) || 0;
+
+      const playerName = customName || selectPlayer;
+      if (!playerName) {
+        alert("Выбери игрока из списка или впиши его ник!");
+        return;
+      }
+
+      const club = leagueData.standings.find(t => t.team === teamName);
+      if (club) {
+        if (!Array.isArray(club.players)) club.players = [];
+        let pObj = club.players.find(p => (p.name || "").toLowerCase() === playerName.toLowerCase());
+        if (!pObj) {
+          pObj = { num: "#10", name: playerName, pos: "Нападающий", gp: 0, g: 0, a: 0, pts: 0 };
+          club.players.push(pObj);
+        }
+        pObj.gp = (parseInt(pObj.gp, 10) || 0) + 1;
+        pObj.g = (parseInt(pObj.g, 10) || 0) + gAdd;
+        pObj.a = (parseInt(pObj.a, 10) || 0) + aAdd;
+        pObj.pts = pObj.g + pObj.a;
+      }
+
+      if (!Array.isArray(m.protocol)) m.protocol = [];
+      m.protocol.push({ team: teamName, player: playerName, g: gAdd, a: aAdd });
+      renderAll();
+      renderAdmin();
+    };
+
+    window.removeQuickMatchPlayerStat = function(matchIdx, evIdx) {
+      const m = leagueData.matches[matchIdx];
+      if (!m || !Array.isArray(m.protocol)) return;
+      const ev = m.protocol[evIdx];
+      if (ev) {
+        const club = leagueData.standings.find(t => t.team === ev.team);
+        if (club && Array.isArray(club.players)) {
+          const pObj = club.players.find(p => (p.name || "").toLowerCase() === (ev.player || "").toLowerCase());
+          if (pObj) {
+            pObj.gp = Math.max(0, (parseInt(pObj.gp, 10) || 1) - 1);
+            pObj.g = Math.max(0, (parseInt(pObj.g, 10) || 0) - (ev.g || 0));
+            pObj.a = Math.max(0, (parseInt(pObj.a, 10) || 0) - (ev.a || 0));
+            pObj.pts = pObj.g + pObj.a;
+          }
+        }
+      }
+      m.protocol.splice(evIdx, 1);
+      renderAll();
+      renderAdmin();
+    };
+
+    window.updateQuickStatRosterSelect = function(matchIdx) {
+      const teamName = document.getElementById(`qstat-team-${matchIdx}`).value;
+      const playerSel = document.getElementById(`qstat-player-${matchIdx}`);
+      const club = leagueData.standings.find(t => t.team === teamName);
+      const players = (club && Array.isArray(club.players)) ? club.players : [];
+      playerSel.innerHTML = players.length
+        ? players.map(p => `<option value="${p.name}">${p.num || ''} ${p.name} (${p.g}Г+${p.a}П)</option>`).join("")
+        : `<option value="">-- Впиши ник справа --</option>`;
+    };
+
     window.uploadNewsCover = function(event, idx) {
       if (!event.target.files[0]) return;
       compressImageFile(event.target.files[0], 1280, (dataUrl) => {
@@ -2296,6 +3441,37 @@
         renderAdmin();
         renderAll();
       });
+    };
+
+    // Управление базой пользователей в Тех. Панели
+    window.adminCreateManualUser = function() {
+      if (!Array.isArray(leagueData.users)) leagueData.users = [];
+      const nowMsk = new Date(Date.now() + 3 * 3600 * 1000);
+      const isoToday = nowMsk.toISOString().slice(0, 10);
+      leagueData.users.unshift({
+        username: "Player_" + (leagueData.users.length + 1),
+        password: "1234",
+        favTeam: leagueData.standings[0]?.team || "МЕТАЛЛУРГ",
+        coins: 500,
+        regDate: `${formatIsoToRusDay(isoToday)} 2026`,
+        betsCount: 0
+      });
+      renderAll();
+      renderAdmin();
+    };
+
+    window.adminDeleteUser = function(uIdx) {
+      const u = leagueData.users[uIdx];
+      if (!u) return;
+      if (!confirm(`Удалить аккаунт «${u.username}» из базы данных?`)) return;
+      leagueData.matches.forEach(m => {
+        if (m.userBets && m.userBets[u.username]) {
+          delete m.userBets[u.username];
+        }
+      });
+      leagueData.users.splice(uIdx, 1);
+      renderAll();
+      renderAdmin();
     };
 
     function buildGoalOptions(selectedVal) {
@@ -2313,6 +3489,9 @@
       applySiteAvatar();
 
       const teamNames = leagueData.standings.map(t => t.team);
+      if (!Array.isArray(leagueData.users)) leagueData.users = [];
+      const countBadge = document.getElementById("admin-users-count-badge");
+      if (countBadge) countBadge.textContent = leagueData.users.length;
 
       document.getElementById("admin-matches-box").innerHTML = leagueData.matches.map((m, i) => {
         normalizeMatchObject(m, i);
@@ -2321,6 +3500,18 @@
         const fType = m.finishType || "REG";
         const sMode = m.statusMode || "AUTO";
         const autoNow = getEffectiveStatus(m);
+
+        const club1 = leagueData.standings.find(t => t.team === m.team1);
+        const p1List = (club1 && Array.isArray(club1.players) && club1.players.length)
+          ? club1.players.map(p => `<option value="${p.name}">${p.num || ''} ${p.name} (${p.g}Г+${p.a}П)</option>`).join("")
+          : `<option value="">-- Впиши ник --</option>`;
+
+        const protoBadges = (m.protocol || []).map((ev, evIdx) => `
+          <span class="bo3-game-pill" style="display:inline-flex; align-items:center; gap:6px;">
+            ${ev.player} (${getTeamAbbr(ev.team)}): ${ev.g}Г+${ev.a}П
+            <button type="button" style="background:none;border:none;color:#ff5c64;cursor:pointer;font-weight:900;" onclick="removeQuickMatchPlayerStat(${i}, ${evIdx})">✕</button>
+          </span>
+        `).join("");
 
         return `
           <div class="admin-match-card">
@@ -2356,22 +3547,44 @@
 
             <div class="amc-bo3-games">
               <div class="field-mini">
-                <span>1-й матч BO3 (опц.)</span>
+                <span>1-й матч (опц.)</span>
                 <input class="admin-input" value="${m.map1 || ''}" onchange="onMatchFieldChange(${i}, 'map1', this.value)" placeholder="напр. 4:2">
               </div>
               <div class="field-mini">
-                <span>2-й матч BO3 (опц.)</span>
+                <span>2-й матч (опц.)</span>
                 <input class="admin-input" value="${m.map2 || ''}" onchange="onMatchFieldChange(${i}, 'map2', this.value)" placeholder="напр. 1:3">
               </div>
               <div class="field-mini">
-                <span>3-й матч BO3 (если 1:1)</span>
+                <span>3-й матч (если 1:1)</span>
                 <input class="admin-input" value="${m.map3 || ''}" onchange="onMatchFieldChange(${i}, 'map3', this.value)" placeholder="напр. 5:4">
+              </div>
+            </div>
+
+            <div>
+              <button type="button" class="btn-mini" style="width:100%;" onclick="document.getElementById('qstat-box-${i}').classList.toggle('open')">
+                ⚡ Внести голы и пасы игроков этой встречи (${(m.protocol || []).length})
+              </button>
+              <div class="amc-quick-stats-drawer ${(m.protocol && m.protocol.length) ? 'open' : ''}" id="qstat-box-${i}" style="margin-top:6px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;">
+                  <select class="admin-input" id="qstat-team-${i}" onchange="updateQuickStatRosterSelect(${i})">
+                    <option value="${m.team1}">${m.team1}</option>
+                    <option value="${m.team2}">${m.team2}</option>
+                  </select>
+                  <select class="admin-input" id="qstat-player-${i}">${p1List}</select>
+                  <input class="admin-input" id="qstat-custom-${i}" placeholder="Или новый ник">
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr auto; gap:6px; align-items:end;">
+                  <div class="field-mini"><span>Голы (+Г)</span><input class="admin-input" type="number" id="qstat-g-${i}" value="1" min="0"></div>
+                  <div class="field-mini"><span>Пасы (+П)</span><input class="admin-input" type="number" id="qstat-a-${i}" value="0" min="0"></div>
+                  <button type="button" class="btn-mini" style="height:38px; background:#fff; color:#000;" onclick="addQuickMatchPlayerStat(${i})">+ Записать</button>
+                </div>
+                ${protoBadges ? `<div style="display:flex; gap:6px; flex-wrap:wrap; padding-top:4px;">${protoBadges}</div>` : ''}
               </div>
             </div>
 
             <div class="amc-footer">
               <div class="finish-pills">
-                <button type="button" class="finish-pill ${m.scoreSet && fType === 'REG' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'REG')">Осн. время (2:0 / 2:1)</button>
+                <button type="button" class="finish-pill ${m.scoreSet && fType === 'REG' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'REG')">Осн. время</button>
                 <button type="button" class="finish-pill ${m.scoreSet && fType === 'OT' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'OT')">В ОТ</button>
                 <button type="button" class="finish-pill ${m.scoreSet && fType === 'SO' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'SO')">Буллиты</button>
                 <button type="button" class="finish-pill tp-pill ${m.scoreSet && fType === 'TP' ? 'active' : ''}" onclick="setMatchFinishType(${i}, 'TP')" title="Нажми для 3:0 или еще раз для 0:3">ТП (3:0)</button>
@@ -2404,6 +3617,43 @@
         </div>
       `).join("");
 
+      // Рендер Базы Зарегистрированных Аккаунтов в Тех. Панели
+      const usersBox = document.getElementById("admin-users-box");
+      if (!leagueData.users.length) {
+        usersBox.innerHTML = `<div style="padding:18px; text-align:center; color:var(--muted); background:#08090c; border-radius:12px; border:1px solid var(--border);">Пока никто не зарегистрировался на сайте.</div>`;
+      } else {
+        usersBox.innerHTML = leagueData.users.map((u, uIdx) => {
+          const teamOpts = teamNames.map(n => `<option value="${n}" ${n === u.favTeam ? 'selected' : ''}>${n}</option>`).join("");
+          return `
+            <div class="admin-player-card">
+              <div style="display:grid; grid-template-columns:1.2fr 1fr 1.2fr 110px auto; gap:6px; align-items:center;">
+                <div class="field-mini">
+                  <span>Никнейм (Логин)</span>
+                  <input class="admin-input" style="font-weight:800;" value="${u.username || ''}" onchange="leagueData.users[${uIdx}].username=this.value;renderAll();">
+                </div>
+                <div class="field-mini">
+                  <span>Пароль</span>
+                  <input class="admin-input" value="${u.password || ''}" onchange="leagueData.users[${uIdx}].password=this.value;">
+                </div>
+                <div class="field-mini">
+                  <span>Любимый клуб</span>
+                  <select class="admin-input" onchange="leagueData.users[${uIdx}].favTeam=this.value;renderAll();">${teamOpts}</select>
+                </div>
+                <div class="field-mini">
+                  <span style="color:var(--amber);">Баланс (🪙)</span>
+                  <input class="admin-input" type="number" value="${u.coins ?? 500}" onchange="leagueData.users[${uIdx}].coins=+this.value;renderAll();">
+                </div>
+                <button type="button" class="btn-mini" style="color:#ff5c64; height:38px; margin-top:14px;" onclick="adminDeleteUser(${uIdx})">🗑</button>
+              </div>
+              <div style="font-size:11px; color:var(--muted); display:flex; justify-content:space-between;">
+                <span>📅 Дата регистрации: <strong>${u.regDate || '2026'}</strong></span>
+                <span>🎯 Сделано ставок: <strong style="color:#fff;">${u.betsCount || 0}</strong></span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
       document.getElementById("admin-news-box").innerHTML = (leagueData.news || []).map((n, i) => `
         <div class="admin-team-card" style="border-left:3px solid ${n.pinned ? '#fff' : 'var(--border)'};">
           <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -2431,7 +3681,7 @@
       rosterSelect.value = prevIdx < leagueData.standings.length ? prevIdx : 0;
       renderAdminRoster();
 
-      document.getElementById("admin-leaders-box").innerHTML = leagueData.leaders.map((l, i) => `
+      document.getElementById("admin-leaders-box").innerHTML = (leagueData.leaders || []).map((l, i) => `
         <div class="admin-player-card">
           <div style="display:grid; grid-template-columns:1fr auto; gap:6px;">
             <input class="admin-input" value="${l.role}" onchange="leagueData.leaders[${i}].role=this.value;renderAll();" placeholder="Номинация">
@@ -2510,7 +3760,7 @@
         date: `${formatIsoToRusDay(isoToday)} 2026`,
         pinned: false,
         image: "",
-        text: "Введите подробный текст новости или обзора серии BO3..."
+        text: "Введите подробный текст новости или обзора игрового дня..."
       });
       renderAdmin();
       renderAll();
@@ -2528,6 +3778,7 @@
       const nowMsk = new Date(Date.now() + 3 * 3600 * 1000);
       const isoToday = nowMsk.toISOString().slice(0, 10);
       leagueData.matches.unshift({
+        id: "m_" + Date.now(),
         dateISO: isoToday,
         timeVal: "20:00",
         day: formatIsoToRusDay(isoToday),
@@ -2544,6 +3795,10 @@
         map1: "",
         map2: "",
         map3: "",
+        votes1: 0,
+        votes2: 0,
+        userBets: {},
+        protocol: [],
         updatedAt: Date.now()
       });
       renderAll();
@@ -2553,7 +3808,7 @@
     document.getElementById("admin-recalc-btn").onclick = () => {
       renderAll();
       renderAdmin();
-      alert("⚡ Турнирная таблица пересчитана по всем сериям BO3!");
+      alert("⚡ Турнирная таблица и лидеры пересчитаны!");
     };
 
     document.getElementById("upload-site-logo").addEventListener("change", (e) => {
@@ -2596,7 +3851,7 @@
       renderAdmin();
     };
     document.getElementById("admin-reset-stats").onclick = () => {
-      leagueData.matches.forEach(m => { m.scoreSet = false; m.g1 = 0; m.g2 = 0; m.map1 = ""; m.map2 = ""; m.map3 = ""; m.finishType = "REG"; m.score = "VS"; });
+      leagueData.matches.forEach(m => { m.scoreSet = false; m.g1 = 0; m.g2 = 0; m.map1 = ""; m.map2 = ""; m.map3 = ""; m.protocol = []; m.finishType = "REG"; m.score = "VS"; });
       renderAll(); renderAdmin();
     };
     document.getElementById("admin-reset-cache").onclick = () => {
@@ -2629,7 +3884,7 @@
 
     document.getElementById("close-admin-modal").onclick = () => closeModalWindow("admin-modal");
 
-    function tickAutoStatuses() {
+    function tickEverySecond() {
       let changed = false;
       leagueData.matches.forEach(m => {
         const nextSt = getEffectiveStatus(m);
@@ -2639,12 +3894,11 @@
         }
       });
       if (changed) renderAll();
-      else updateSmartHeaderWidget();
+      else updateCountdownAndHeaderWidget();
     }
 
     renderAll();
-    tickAutoStatuses();
-    setInterval(tickAutoStatuses, 10000);
+    setInterval(tickEverySecond, 1000);
     syncFromCloud();
   </script>
 </body>
